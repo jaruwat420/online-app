@@ -13,9 +13,12 @@ table.dataTable td {
     width: 100px; 
 }
 
-header,
+header {
+    flex: 0 0 auto;
+}
 footer {
     flex: 0 0 auto;
+    margin-top: auto;
 }
 
 main {
