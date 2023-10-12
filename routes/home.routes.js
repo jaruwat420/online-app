@@ -1,18 +1,12 @@
 import { Router } from "express";
 import { 
     renderHome,
-    renderRegister,
-    Register,
-    renderLogin,
-    Login,
+    renderAbout,
 } from "../controllers/homeController.js";
 
 const router = Router();
 
 router.get("/", renderHome);
-router.get("/register", renderRegister);
-router.post("/register", Register);
-router.get("/login", renderLogin);
-router.post("/login", Login);
+router.get("/about", renderAbout);
 
 export default router;

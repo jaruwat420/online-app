@@ -5,5 +5,5 @@ export const pool = createPool({
     user: "root",
     password: "root",
     port: "8889",
-    database: "notification_system"
+    database: "notification_system",
 });
