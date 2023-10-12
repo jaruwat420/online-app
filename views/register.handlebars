@@ -2,134 +2,64 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                <form>
-                    <div class="text-center mb-3">
-                        <p>Sign in with:</p>
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
+            <section>
+                <div class="container">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-lg-12 col-xl-11">
+                            <div class="card text-black" style="border-radius: 25px;">
+                                <div class="card-body p-md-5">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                            <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-google"></i>
-                        </button>
+                                            <form class="mx-1 mx-md-4" method="POST" action="/register">
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" class="form-control" id="fullname"  name ="fullname"  />
+                                                        <label class="form-label" for="fullname">Your Name</label>
+                                                    </div>
+                                                </div>
 
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="email" class="form-control" id="email" name ="email"/>
+                                                        <label class="form-label" for="email">YourEmail</label>
+                                                    </div>
+                                                </div>
 
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-github"></i>
-                        </button>
-                    </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="password" class="form-control" id="password" name ="password" />
+                                                        <label class="form-label" name ="password" for="password" autocomplete="on">Password</label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="password" class="form-control" id="confirmPassword" name ="confirmPassword" />
+                                                        <label class="form-label" name ="confirmPassword" for="confirmPassword" autocomplete="on">confirmPassword</label>
+                                                    </div>
+                                                </div>
 
-                    <p class="text-center">or:</p>
-
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="email" id="loginName" class="form-control" />
-                        <label class="form-label" for="loginName">Email or username</label>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="loginPassword" class="form-control" />
-                        <label class="form-label" for="loginPassword">Password</label>
-                    </div>
-
-                    <!-- 2 column grid layout -->
-                    <div class="row mb-4">
-                        <div class="col-md-6 d-flex justify-content-center">
-                            <!-- Checkbox -->
-                            <div class="form-check mb-3 mb-md-0">
-                                <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                                <label class="form-check-label" for="loginCheck"> Remember me </label>
+                                                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                    <button type="submit" class="btn btn-lg btn-primary">Register</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2" style="background-color: #FEFCF3;">
+                                        </div>
+                                    </div>                                    
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6 d-flex justify-content-center">
-                            <!-- Simple link -->
-                            <a href="#!">Forgot password?</a>
-                        </div>
                     </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-                    <!-- Register buttons -->
-                    <div class="text-center">
-                        <p>Not a member? <a href="#!">Register</a></p>
-                    </div>
-                </form>
-            </div>
-            <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                <form>
-                    <div class="text-center mb-3">
-                        <p>Sign up with:</p>
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-google"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-
-                        <button type="button" class="btn btn-link btn-floating mx-1">
-                            <i class="fab fa-github"></i>
-                        </button>
-                    </div>
-
-                    <p class="text-center">or:</p>
-
-                    <!-- Name input -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="registerName" class="form-control" />
-                        <label class="form-label" for="registerName">Name</label>
-                    </div>
-
-                    <!-- Username input -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="registerUsername" class="form-control" />
-                        <label class="form-label" for="registerUsername">Username</label>
-                    </div>
-
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <input type="email" id="registerEmail" class="form-control" />
-                        <label class="form-label" for="registerEmail">Email</label>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="registerPassword" class="form-control" />
-                        <label class="form-label" for="registerPassword">Password</label>
-                    </div>
-
-                    <!-- Repeat Password input -->
-                    <div class="form-outline mb-4">
-                        <input type="password" id="registerRepeatPassword" class="form-control" />
-                        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-                    </div>
-
-                    <!-- Checkbox -->
-                    <div class="form-check d-flex justify-content-center mb-4">
-                        <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                            aria-describedby="registerCheckHelpText" />
-                        <label class="form-check-label" for="registerCheck">
-                            I have read and agree to the terms
-                        </label>
-                    </div>
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-                </form>
-            </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
-
-
 {{> footer}}
