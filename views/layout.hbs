@@ -13,77 +13,166 @@
     <link href="/css/layout.css" rel="stylesheet" type="text/css" media="all" />
     <title>{{ title }}</title>
 </head>
-<body>    
+
+<body>
     <nav class="navbar navbar-expand-custom navbar-mainbg">
-    <a class="navbar-brand navbar-logo" href="#">CRUD</a>
-    <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <div class="hori-selector">
-                <div class="left"></div>
+        <a class="navbar-brand navbar-logo" href="#">CRUD</a>
+        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector">
+                    <div class="left"></div>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/"><i class="far fa-copy"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about"><i class="far fa-clone"></i>About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="far fa-calendar-alt link-login"></i>Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {{{ body }}}
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModal">Singin</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <section class="">
+                                    <ul class="nav nav-tabs" >
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-controls="Log In" role="tab" data-toggle="tab" href="#login">Sign In</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link " aria-controls="register" role="tab" data-toggle="tab" href="#register">Sign Up</a>
+                                        </li>                                                                         
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active form-are" id="login">
+
+                                            <form>
+                                                <div class="form-bor">
+                                                    <div class="form-control-group">
+                                                            <label for="">Email</label>
+                                                            <input type="email" class="form-control" name="l_username" id="l_username" placeholder="example@yahoo.com">
+                                                    </div>
+                                                    <div class="form-input-group">
+                                                        <label for="">Password</label>
+                                                        <input type="password" class="form-control" name="l_password" id="l_password">
+                                                    </div>
+                                                    <div class="form-input-checkbox">
+                                                        <input type="checkbox" class="form-control" id="l_checkbox" name="l_checkbox" />
+                                                        <label  for="test1">Keep me Signed in</label>
+                                                    </div>
+                                                    <div class="form-input-group">
+                                                        <button type="button" class="btn btn-primary btn-singIn">Sing in</button>
+                                                    </div>
+                                                </div>
+                                                <a class="forgot-pass" href="">Forgot Password?</a>
+                                            </form>
+                                        </div>
+
+                                        {{!-- Register --}}
+                                        <div role="tabpanel" class="tab-pane" id="register">
+                                            <form action="">
+                                                <div class="form-bor">
+                                                    <div class="form-input-group">
+                                                        <label for="">Username</label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" name="r_username" class="form-control" id="r_username" placeholder="First Name" >
+                                                            </div>
+                                                            <div class="col-md-6">                                                                
+                                                                <input type="text" class="form-control" name="r_lname" id="r_lname" placeholder="Last Name">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-input-group">
+                                                        <label for="">Email</label>
+                                                        <input type="text" name="r_email" class="form-control" id="r_email" placeholder="Email">
+                                                    </div>
+
+                                                    <div class="form-input-group">
+                                                        <label for="">Password</label>
+                                                        <input type="password" name="r_password" class="form-control" id="r_password" placeholder="Password">
+                                                        <input type="password" name="r_confirmPassword" class="form-control" id="r_confirmPassword" placeholder="Confirm Password">
+                                                    </div>
+
+                                                    <div class="form-input-group">
+                                                        <button type="button" class="btn btn-primary btn-singUp">Sing Up</button>
+                                                    </div>
+                                                </div>
+                                                <a class="forgot-pass" href="index.html">Already have an account? <strong>Sign in</strong>
+                                                </a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/"><i class="far fa-copy"></i>Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about"><i class="far fa-clone"></i>About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/auth/register"><i class="far fa-calendar-alt"></i>Register</a>
-            <li class="nav-item">
-                <a class="nav-link" href="/auth/login"><i class="far fa-calendar-alt"></i>Login</a>
-            </li>
+        </div>
+    </div>
+
+    <footer>
+        <div class="waves">
+            {{!-- <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div> --}}
+        </div>
+        <ul class="social_icon">
+            <li><a href="#">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a></li>
+            <li><a href="#">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a></li>
+            <li><a href="#">
+                    <ion-icon name="logo-linkedin"></ion-icon>
+                </a></li>
+            <li><a href="#">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a></li>
         </ul>
-    </div>
-</nav>
 
-    {{{ body }}}  
-<footer>
-    <div class="waves">
-        {{!-- <div class="wave" id="wave1"></div>
-        <div class="wave" id="wave2"></div>
-        <div class="wave" id="wave3"></div>
-        <div class="wave" id="wave4"></div> --}}
-    </div>
-    <ul class="social_icon">
-        <li><a href="#">
-                <ion-icon name="logo-facebook"></ion-icon>
-            </a></li>
-        <li><a href="#">
-                <ion-icon name="logo-twitter"></ion-icon>
-            </a></li>
-        <li><a href="#">
-                <ion-icon name="logo-linkedin"></ion-icon>
-            </a></li>
-        <li><a href="#">
-                <ion-icon name="logo-instagram"></ion-icon>
-            </a></li>
-    </ul>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p class="copyright"> 🇹🇭 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, praesentium. ❤️
+        </p>
+    </footer>
 
-    <ul class="menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Team</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-    <p class="copyright"> 🇹🇭 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, praesentium. ❤️ </p>
-</footer>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script> 
-
-{{!-- template main JS File --}}
-<script src="/js/main.js"></script>
+    {{!-- template main JS File --}}
+    <script src="/js/main.js"></script>
 </body>
+
 </html>

@@ -20,7 +20,8 @@ const app = express();
 const port = 3000;
 
 // Handlebars
-app.set('views', './views');
+
+app.set('views', path.join(__dirname, "views"));
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
@@ -30,7 +31,6 @@ app.engine('handlebars', engine({
     partialsDir: path.join(__dirname, 'views/partials')
 
 }));
-
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
