@@ -234,3 +234,20 @@ input[type=submit]:hover {
     align-items: center;
     column-gap: 20px; 
 }
+.carousel-item {
+    height: 500px;
+}
+.carousel-image-1 {
+    background-image: url(https://cdn.pixabay.com/photo/2016/05/27/08/51/mobile-phone-1419275_1280.jpg);
+    background-size: cover;
+}
+
+.carousel-image-2 {
+    background-image: url(https://cdn.pixabay.com/photo/2017/04/11/15/55/animals-2222007_1280.jpg);
+    background-size: cover;
+}
+
+.carousel-image-3 {
+    background-image: url(https://cdn.pixabay.com/photo/2015/12/06/09/15/maple-1079235_1280.jpg);
+    background-size: cover;
+}

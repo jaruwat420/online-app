@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    {{!-- NavMenu --}}
     <nav class="navbar navbar-expand-custom navbar-mainbg">
         <a class="navbar-brand navbar-logo" href="#">CRUD</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -38,8 +39,70 @@
             </ul>
         </div>
     </nav>
+    {{!-- Carousel --}}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item carousel-image-1  active">
 
-    {{{ body }}}
+            <div class="container">
+                <div class="carousel-caption text-left">
+                    <h1>Example headline.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
+                        at eget
+                        metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item carousel-image-2 ">            
+
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>Another example headline.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
+                        at eget
+                        metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item carousel-image-3 ">            
+
+            <div class="container">
+                <div class="carousel-caption text-right">
+                    <h1>One more for good measure.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
+                        at eget
+                        metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
+    {{!-- Content --}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {{{ body }}}
+            </div>
+        </div>
+    </div>
+
+    {{!-- Modals --}}
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -51,13 +114,15 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <section class="">
-                                    <ul class="nav nav-tabs" >
+                                    <ul class="nav nav-tabs">
                                         <li class="nav-item">
-                                            <a class="nav-link active" aria-controls="Log In" role="tab" data-toggle="tab" href="#login">Sign In</a>
+                                            <a class="nav-link active" aria-controls="Log In" role="tab"
+                                                data-toggle="tab" href="#login">Sign In</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link " aria-controls="register" role="tab" data-toggle="tab" href="#register">Sign Up</a>
-                                        </li>                                                                         
+                                            <a class="nav-link " aria-controls="register" role="tab" data-toggle="tab"
+                                                href="#register">Sign Up</a>
+                                        </li>
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active form-are" id="login">
@@ -65,19 +130,23 @@
                                             <form>
                                                 <div class="form-bor">
                                                     <div class="form-control-group">
-                                                            <label for="">Email</label>
-                                                            <input type="email" class="form-control" name="l_username" id="l_username" placeholder="example@yahoo.com">
+                                                        <label for="">Email</label>
+                                                        <input type="email" class="form-control" name="l_username"
+                                                            id="l_username" placeholder="example@yahoo.com">
                                                     </div>
                                                     <div class="form-input-group">
                                                         <label for="">Password</label>
-                                                        <input type="password" class="form-control" name="l_password" id="l_password">
+                                                        <input type="password" class="form-control" name="l_password"
+                                                            id="l_password">
                                                     </div>
                                                     <div class="form-input-checkbox">
-                                                        <input type="checkbox" class="form-control" id="l_checkbox" name="l_checkbox" />
-                                                        <label  for="test1">Keep me Signed in</label>
+                                                        <input type="checkbox" class="form-control" id="l_checkbox"
+                                                            name="l_checkbox" />
+                                                        <label for="test1">Keep me Signed in</label>
                                                     </div>
                                                     <div class="form-input-group">
-                                                        <button type="button" class="btn btn-primary btn-singIn">Sing in</button>
+                                                        <button type="button" class="btn btn-primary btn-singIn">Sing
+                                                            in</button>
                                                     </div>
                                                 </div>
                                                 <a class="forgot-pass" href="">Forgot Password?</a>
@@ -92,30 +161,39 @@
                                                         <label for="">Username</label>
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                <input type="text" name="r_username" class="form-control" id="r_username" placeholder="First Name" >
+                                                                <input type="text" name="r_username"
+                                                                    class="form-control" id="r_username"
+                                                                    placeholder="First Name">
                                                             </div>
-                                                            <div class="col-md-6">                                                                
-                                                                <input type="text" class="form-control" name="r_lname" id="r_lname" placeholder="Last Name">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" name="r_lname"
+                                                                    id="r_lname" placeholder="Last Name">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-input-group">
                                                         <label for="">Email</label>
-                                                        <input type="text" name="r_email" class="form-control" id="r_email" placeholder="Email">
+                                                        <input type="text" name="r_email" class="form-control"
+                                                            id="r_email" placeholder="Email">
                                                     </div>
 
                                                     <div class="form-input-group">
                                                         <label for="">Password</label>
-                                                        <input type="password" name="r_password" class="form-control" id="r_password" placeholder="Password">
-                                                        <input type="password" name="r_confirmPassword" class="form-control" id="r_confirmPassword" placeholder="Confirm Password">
+                                                        <input type="password" name="r_password" class="form-control"
+                                                            id="r_password" placeholder="Password">
+                                                        <input type="password" name="r_confirmPassword"
+                                                            class="form-control" id="r_confirmPassword"
+                                                            placeholder="Confirm Password">
                                                     </div>
 
                                                     <div class="form-input-group">
-                                                        <button type="button" class="btn btn-primary btn-singUp">Sing Up</button>
+                                                        <button type="button" class="btn btn-primary btn-singUp">Sing
+                                                            Up</button>
                                                     </div>
                                                 </div>
-                                                <a class="forgot-pass" href="index.html">Already have an account? <strong>Sign in</strong>
+                                                <a class="forgot-pass" href="index.html">Already have an account?
+                                                    <strong>Sign in</strong>
                                                 </a>
                                             </form>
                                         </div>
@@ -129,6 +207,7 @@
         </div>
     </div>
 
+    {{!-- Footer --}}
     <footer>
         <div class="waves">
             {{!-- <div class="wave" id="wave1"></div>
