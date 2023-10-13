@@ -1,1 +1,3 @@
-alert(11111);
+$(document).ready(function () {
+    alert(111);
+});

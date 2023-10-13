@@ -10,3 +10,7 @@ export const renderHome = async (req, res) => {
 export const renderAbout = async (req, res) => {
     res.render('about');
 }
+
+export const renderMessage = async (req, res) => {
+    res.render('success');
+}

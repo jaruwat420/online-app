@@ -1,6 +1,7 @@
 import  express  from "express";
 import bodyParser from "body-parser";
-import { engine } from 'express-handlebars';
+import { engine} from 'express-handlebars';
+import  hbs from 'express-handlebars';
 import path from "path";
 import { fileURLToPath } from 'url';
 import homeRoutes from "./routes/home.routes.js";
@@ -19,17 +20,17 @@ const app = express();
 const port = 3000;
 
 // Handlebars
+app.set('views', './views');
+app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 
 app.engine('handlebars', engine({
-    defaultLayout: 'main', 
-    layoutsDir: path.join(__dirname, 'views/layouts'),
+    defaultLayout: 'layout', 
+    layoutsDir: path.join(__dirname, 'views'),
     partialsDir: path.join(__dirname, 'views/partials')
 
 }));
 
-app.set('view engine', 'handlebars');
-app.set('views', './views');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,6 +41,6 @@ app.use(express.json());
 app.use(homeRoutes);
 
 // Routes, auth
-app.use('/auth', authRoutes);
+app.use("/auth", authRoutes);
 
 export default app;
