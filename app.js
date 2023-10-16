@@ -6,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import homeRoutes from "./routes/home.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-import backendRoutes from "./routes/admin.routes.js";
+import backendRoutes from "./routes/user.routes.js";
 import  dotenv  from "dotenv";
 
 dotenv.config({path: './.env'});

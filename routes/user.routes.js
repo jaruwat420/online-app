@@ -2,7 +2,7 @@ import { Router } from "express";
 import { 
     getIndex,
 
-} from "../controllers/adminController.js";
+} from "../controllers/userController.js";
 
 const router = Router();
 
