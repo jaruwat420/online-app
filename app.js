@@ -1,11 +1,12 @@
 import  express  from "express";
 import bodyParser from "body-parser";
 import { engine} from 'express-handlebars';
-import  hbs from 'express-handlebars';
+import  hbs from 'hbs';
 import path from "path";
 import { fileURLToPath } from 'url';
 import homeRoutes from "./routes/home.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import backendRoutes from "./routes/admin.routes.js";
 import  dotenv  from "dotenv";
 
 dotenv.config({path: './.env'});
@@ -20,17 +21,21 @@ const app = express();
 const port = 3000;
 
 // Handlebars
-
-app.set('views', path.join(__dirname, "views"));
-app.set('view engine', 'hbs');
-app.use(express.static(__dirname + '/public'));
-
-app.engine('handlebars', engine({
-    defaultLayout: 'layout', 
+app.engine('hbs', engine({
     layoutsDir: path.join(__dirname, 'views'),
-    partialsDir: path.join(__dirname, 'views/partials')
-
+    partialsDir:[
+        path.join(__dirname, 'views', 'partials'),
+        path.join(__dirname, 'views', 'auth', 'partials'),
+        path.join(__dirname, 'views', 'backend', 'partials')
+    ]
 }));
+
+// Setting
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
+app.use(express.static("public"));
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,5 +47,6 @@ app.use(homeRoutes);
 
 // Routes, auth
 app.use("/auth", authRoutes);
+app.use("/backend", backendRoutes);
 
 export default app;
