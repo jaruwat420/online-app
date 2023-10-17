@@ -22,7 +22,7 @@
 {{> footer}}
 
 {{!-- Scripts --}}
-<script>
+{{!-- <script>
     $(document).ready(function () {
         $('.nav-link').on('click', function (e) {
             $('#loginModal').modal('show');
@@ -108,7 +108,6 @@
                 username: document.getElementById('l_username').value,
                 password: document.getElementById('l_password').value,
             }
-            //console.log(newUser);
             $.ajax({
                 type: "put",
                 url: "auth/login",
@@ -124,7 +123,7 @@
                             text: 'อัพเดทข้อมูลที่เลือกแล้ว.',
                             icon: 'success',
                         }).then(() => {
-                            window.location.href = "/backend/index";
+                            window.location.href = "/redirect/secret";
                         });
                     }
                 },
@@ -134,4 +133,4 @@
             });
         });
     });    
-</script>
+</script> --}}

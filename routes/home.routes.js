@@ -1,14 +1,16 @@
 import { Router } from "express";
 import { 
     renderHome,
+    renderSecret,
     renderAbout,
-    renderMessage
 } from "../controllers/homeController.js";
 
 const router = Router();
 
 router.get("/", renderHome);
+
+router.get("/secret", renderSecret);
 router.get("/about", renderAbout);
-router.get("/success", renderMessage);
+
 
 export default router;

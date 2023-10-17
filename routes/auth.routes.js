@@ -7,8 +7,10 @@ import {
 
 const router = Router();
 
+router.put("/", login);
 router.get("/register", getRegister);
 router.put("/register", register);
 router.put("/login", login);
+
 
 export default router;
