@@ -51,11 +51,11 @@ $(document).ready(function () {
             success: function (res) {
                 if (res.status == 200) {
                     Swal.fire({
-                        title: 'อัพเดทข้อมูลสำเร็จ!',
-                        text: 'อัพเดทข้อมูลที่เลือกแล้ว.',
+                        title: 'ลงทะเบียนสำเร็จ!',
+                        text: 'กรุณากดยืนยันเพื่อทำการเข้าสู่ระบบ',
                         icon: 'success',
                     }).then(() => {
-
+                        window.location.href = "/";
                     });
                 }
             },
@@ -92,15 +92,9 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (res) {
-                if (res.status == 200) {
-                    Swal.fire({
-                        title: 'อัพเดทข้อมูลสำเร็จ!',
-                        text: 'อัพเดทข้อมูลที่เลือกแล้ว.',
-                        icon: 'success',
-                    }).then(() => {
-                        window.location.href = "/redirect/secret";
-                    });
-                }
+                setTimeout(() => {
+                    window.location.href = "/backend/index";
+                }, 1000);
             },
             error: function (error) {
                 Swal.fire('เกิดข้อผิดพลาด', 'พบอีเมลนี้ในระบบแล้ว โปรดใช้อีเมลอื่น!', 'error');

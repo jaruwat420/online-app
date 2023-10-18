@@ -1,80 +1,64 @@
 import {response} from "express";
 import { pool } from "../db.js";
+import bcrypt from 'bcrypt';
+
 
 export const getRegister = async (req, res) => {
     res.render('auth/register');
 }
 
+// Register
 export const register = async (req, res) => {
-
-    const {
-        firstname,
-        lastname,
-        email,
-        password,
-        passwordConfirm
-    } = req.body;
+    const firstName = req.body.firstname;
+    const lastName = req.body.lastname;
+    const email = req.body.email;
 
     try {
-        const existingUser = await pool.query("SELECT user_email FROM users WHERE user_email = ?", [email]);
+         // Check if the email already exists
+        const [existingUser] = await pool.query("SELECT user_email FROM users WHERE user_email = ?", [email]);
 
         if (existingUser.length > 0) {
-            return res.status(400).json({
-                message: "มีอีเมลผู้ใช้นี้ในระบบแล้ว!",
-                status: "400"
-            });
+            return res.status(400).json({ message: "มีอีเมลผู้ใช้นี้ในระบบแล้ว!", status: "400" });
         }
 
-        if (password !== passwordConfirm) {
-            return res.status(400).json({
-                message: "รหัสผ่านไม่ตรงกัน!",
-                status: "400"
-            });
-        }
+        // Hash the password
+        const saltRounds = 10;
+        const password = await bcrypt.hash(req.body.password, saltRounds);
+        const passwordConfirm = await bcrypt.hash(req.body.password, saltRounds);
 
-        await pool.query("INSERT INTO users (user_firstname, user_lastname, user_email, user_password, 	user_password1) VALUES (?, ?, ?, ?, ?)", [firstname, lastname, email, password, passwordConfirm, ]);
-        return res.sendStatus(200);
-
+        // Insert the new user
+        await pool.query("INSERT INTO users (user_firstname, user_lastname, user_email, user_password, user_password1) VALUES (?, ?, ?, ?, ?)", [firstName, lastName, email, password, passwordConfirm]);
+        return res.status(200).json({ message: "ลงทะเบียนสำเร็จ!", status: "200" });
     } catch (error) {
         console.error('Error during registration:', error);
-        return res.status(500).send('Internal Server Error');
+        return res.status(500).json({ message: "Internal Server Error!", status: "500" });
     }
-
 };
 
 // Login
 export const login = async (req, res) => {
-    const {
-        username,
-        password
-    } = req.body;
-
+    const {username, password}= req.body
+    
     try {
-        const [results] = await pool.query('SELECT * FROM users WHERE user_email = ? AND user_password = ?', [username, password]);
+        const [results] = await pool.query("SELECT user_email, user_password FROM users WHERE user_email = ?", [username]);
 
-        if (results.length === 0) {
-
-            return res.status(401).send({
-                message: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!",
-                status: "401"
-            });
+        if (results.length === 0 ) {
+            return res.status(401).send({message: "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!",status: "401"});
         }
 
-        if (results && results.length > 0) {
+        const isPasswordMatch = bcrypt.compare(password, results[0].user_password);
 
-            return res.status(200).json({
-                message: "เข้าสู่ระบบสำเร็จ!",
-                status: "200"
-            });
-        }
+        if (isPasswordMatch) {                
+            return res.status(200).send({message: "Login Success Fully.!",status: "200"});
+        } else {
+            return res.send(400).send({message: "Login Failed...!",status: "400"});
+        }        
 
     } catch (error) {
+        console.log(`error der ja ${error}.`);   
+    }    
+};
 
-        return res.status(500).send({
-            message: "เกิดข้อผิดพลาดในการเข้าสู่ระบบ!",
-            status: "500"
-        });
-
-    }
-
+export const secretPage = async (req, res) => {
+    res.render('secret');
 }

@@ -8,25 +8,26 @@ import homeRoutes from "./routes/home.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import backendRoutes from "./routes/user.routes.js";
 import hbs from "hbs";
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'; 
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
-dotenv.config();
-console.log(process.env.SECRET);
 
+dotenv.config({ path: './.env'})
+
+
+hbs.registerPartials(path.join(__dirname,'views/partials'))
 // Handlebars
-hbs.registerPartials(path.join(__dirname,'views','partials'))
 app.engine('handlebars', engine({
-    defaultLayout: 'main',
+    defaultLayout: 'layout',
     layoutsDir: path.join(__dirname, 'views/layouts'),
     partialsDir: [
-        path.join(__dirname, 'views', 'partials'),
-        path.join(__dirname, 'views', 'backend', 'partials'),
-        path.join(__dirname, 'views', 'auth', 'partials'),
+        path.join(__dirname, 'views', 'partials')
     ]
 }));
 
@@ -40,6 +41,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
+
 
 // Routes
 app.use(homeRoutes);

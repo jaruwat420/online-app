@@ -1,136 +1,59 @@
-{{!-- Header --}}
-{{> header}}
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Charts</h1>
+<p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below
+    have been customized - for further customization options, please visit the <a target="_blank"
+        href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
 
-{{!-- Carousel --}}
-{{> carousel}}
+<!-- Content Row -->
+<div class="row">
 
-{{!-- Modals --}}
-{{> modals}}
+    <div class="col-xl-8 col-lg-7">
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 mt-2">
-            <h4 class="text-center">Category</h4>
+        <!-- Area Chart -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>
+                <hr>
+                Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
+            </div>
+        </div>
+
+        <!-- Bar Chart -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar">
+                    <canvas id="myBarChart"></canvas>
+                </div>
+                <hr>
+                Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Donut Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie pt-4">
+                    <canvas id="myPieChart"></canvas>
+                </div>
+                <hr>
+                Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
+            </div>
         </div>
     </div>
 </div>
-
-{{!-- Category Menu --}}
-{{> categoryMenu}}
-
-{{!-- Footer --}}
-{{> footer}}
-
-{{!-- Scripts --}}
-{{!-- <script>
-    $(document).ready(function () {
-        $('.nav-link').on('click', function (e) {
-            $('#loginModal').modal('show');
-        });
-
-        // Register form
-        $('.btn-singUp').click(function (e) {
-            const usernameValue = document.getElementById('r_username').value;
-            const lnameValue = document.getElementById('r_lname').value;
-            const emailValue = document.getElementById('r_email').value;
-            const passwordValue = document.getElementById('r_password').value;
-            const passwordValueConfirm = document.getElementById('r_confirmPassword').value;
-
-            if (usernameValue.length <= 0) {
-                alert(`Please input username`);
-                e.preventdefault()
-            } else if (lnameValue.length <= 0) {
-                alert(`Please input lastname`);
-                e.preventdefault()
-            } else if (emailValue.length <= 0) {
-                alert(`Please input email`);
-                e.preventdefault()
-            } else if (passwordValue.length <= 0) {
-                alert(`Please input password`);
-                e.preventdefault()
-            } else if (passwordValueConfirm.length <= 0) {
-                alert(`Please input confirmPassword`);
-                e.preventdefault()
-            } else if (passwordValue != passwordValueConfirm) {
-                alert(`Password no Match!`)
-                e.preventdefault()
-            }
-            const userData = {
-                username: usernameValue,
-                lastname: lnameValue,
-                email: emailValue,
-                password: passwordValue,
-                passwordConfirm: passwordValueConfirm,
-            }
-            $.ajax({
-                type: "put",
-                url: "auth/register",
-                data: {
-                    firstname: userData.username,
-                    lastname: userData.lastname,
-                    email: userData.email,
-                    password: userData.password,
-                    passwordConfirm: userData.passwordConfirm
-                },
-                dataType: "JSON",
-                success: function (res) {
-                    if (res.status == 200) {
-                        Swal.fire({
-                            title: 'อัพเดทข้อมูลสำเร็จ!',
-                            text: 'อัพเดทข้อมูลที่เลือกแล้ว.',
-                            icon: 'success',
-                        }).then(() => {
-
-                        });
-                    }
-                },
-                error: function (error) {
-                    Swal.fire('เกิดข้อผิดพลาด', 'พบอีเมลนี้ในระบบแล้ว โปรดใช้อีเมลอื่น!', 'error');
-                }
-            });
-        });
-
-        // Login form
-        $('.btn-singIn').click(function (e) {
-            const usernameValue = document.getElementById('l_username').value;
-            const passwordValue = document.getElementById('l_password').value;
-
-            if (usernameValue.length <= 8) {
-                alert(`กรุณากรอกรหัสอีเมลมากกว่า 8 ตัวอักษร`);
-                return;
-
-            } else if (passwordValue.length <= 7) {
-
-                alert(`กรุณากรอกรหัสผ่านที่มากกว่า 8 ตัวอักษร`);
-                return;
-            }
-            const newUser = {
-                username: document.getElementById('l_username').value,
-                password: document.getElementById('l_password').value,
-            }
-            $.ajax({
-                type: "put",
-                url: "auth/login",
-                data: {
-                    username: newUser.username,
-                    password: newUser.password,
-                },
-                dataType: "json",
-                success: function (res) {
-                    if (res.status == 200) {
-                        Swal.fire({
-                            title: 'อัพเดทข้อมูลสำเร็จ!',
-                            text: 'อัพเดทข้อมูลที่เลือกแล้ว.',
-                            icon: 'success',
-                        }).then(() => {
-                            window.location.href = "/redirect/secret";
-                        });
-                    }
-                },
-                error: function (error) {
-                    Swal.fire('เกิดข้อผิดพลาด', 'พบอีเมลนี้ในระบบแล้ว โปรดใช้อีเมลอื่น!', 'error');
-                }
-            });
-        });
-    });    
-</script> --}}
