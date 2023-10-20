@@ -15,37 +15,37 @@ const sequelize = new Sequelize(database, user, password,{
     dialect: 'mysql',
 });
 
-const Users = sequelize.define('users', {
-    user_id: {
+const Product = sequelize.define('product', {
+    id: {
         type: DataTypes.INTEGER,
-        field: 'user_id',
+        field: 'id',
         primaryKey: true,
         autoIncrement: true, 
         allowNull: false,
     },
-    user_firstname: {
+    product_name: {
         type: DataTypes.STRING,
-        field: 'user_firstname',
+        field: 'product_name',
         allowNull: false,
     },
-    user_lastname: {
+    product_image: {
         type: DataTypes.STRING,
-        field: 'user_lastname',
+        field: 'product_image',
         allowNull: false,
     },
-    user_email: {
+    product_description: {
         type: DataTypes.STRING,
-        field: 'user_email',
+        field: 'product_description',
         defaultValue: false,
     },
-    user_password: {
+    product_price: {
         type: DataTypes.STRING,
-        field: 'user_password',
+        field: '	product_price',
         defaultValue: '',
     },
-    user_password1: {
+    product_qty: {
         type: DataTypes.STRING,
-        field: 'user_password1',
+        field: 'product_qty',
         defaultValue: '',
     },
 }, {
@@ -53,4 +53,4 @@ const Users = sequelize.define('users', {
     tableName: 'users',
 });
 
-export default Users;
+export default Product;

@@ -6,11 +6,10 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import homeRoutes from "./routes/home.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-import backendRoutes from "./routes/user.routes.js";
+import backendRoutes from "./routes/backend.routes.js";
+import productRoutes from "./routes/product.routes.js";
 import hbs from "hbs";
-import dotenv from 'dotenv'; 
-
-
+import cookieParser from "cookie-parser";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,8 +17,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 3000;
 
-dotenv.config({ path: './.env'})
-
+// Uploads
+// form.uploadDir = path.join(__dirname, '/uploads');
 
 hbs.registerPartials(path.join(__dirname,'views/partials'))
 // Handlebars
@@ -41,7 +40,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
-
+app.use(cookieParser())
 
 // Routes
 app.use(homeRoutes);
@@ -50,10 +49,10 @@ app.use(homeRoutes);
 app.use("/backend", backendRoutes);
 app.use("/auth", authRoutes);
 app.use("/redirect", homeRoutes);
+app.use("/product", productRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
 
 export default app; 

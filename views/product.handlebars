@@ -1,0 +1,79 @@
+<h4>Product Manager</h4>
+
+<div class="card">
+    <div class="card-header">
+        <button class="btn btn-success btn-add-product">Add Product</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped" id="dataTable" class="display">
+            <caption>List of users</caption>
+            <thead>
+                <tr>
+                    <th scope="col">ลำดับ</th>
+                    <th scope="col">Picture</th>  
+                    <th scope="col">Category</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="modal_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" action="/product/create_product" method="post">
+                    <div class="mb-3">
+                        <label for="categories" class="col-form-label">Categories:</label>
+                        <select class="form-control" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            {{#each categories}}
+                                <option value="{{this.category_name_id}}">{{this.category_name}}</option>
+                            {{/each}}
+                        </select>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="category_name" class="col-form-label">name:</label>
+                        <input type="text" name="category_name" class="form-control" id="category_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product_image" class="col-form-label">Image:</label>
+                        <input type="file" name="product_image" class="form-control" id="product_image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="category-description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Price:</label>
+                        <input type="text" name="product_price" class="form-control" id="product_price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">qty:</label>
+                        <input type="text" name="product_qty" class="form-control" id="product_qty">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-close-category" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-save-category">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/jquery/jquery.min.js"></script>
+<script src="{{scriptsData.product}}"></script>

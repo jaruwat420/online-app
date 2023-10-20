@@ -15,42 +15,32 @@ const sequelize = new Sequelize(database, user, password,{
     dialect: 'mysql',
 });
 
-const Users = sequelize.define('users', {
-    user_id: {
+const Categories = sequelize.define('category', {
+    id: {
         type: DataTypes.INTEGER,
-        field: 'user_id',
+        field: 'id',
         primaryKey: true,
         autoIncrement: true, 
         allowNull: false,
     },
-    user_firstname: {
+    category_name: {
         type: DataTypes.STRING,
-        field: 'user_firstname',
+        field: 'category_name',
         allowNull: false,
     },
-    user_lastname: {
+    category_image: {
         type: DataTypes.STRING,
-        field: 'user_lastname',
+        field: 'category_image',
         allowNull: false,
     },
-    user_email: {
+    category_detail: {
         type: DataTypes.STRING,
-        field: 'user_email',
+        field: 'category_detail',
         defaultValue: false,
-    },
-    user_password: {
-        type: DataTypes.STRING,
-        field: 'user_password',
-        defaultValue: '',
-    },
-    user_password1: {
-        type: DataTypes.STRING,
-        field: 'user_password1',
-        defaultValue: '',
     },
 }, {
     timestamps: false,
-    tableName: 'users',
+    tableName: 'category',
 });
 
-export default Users;
+export default Categories;

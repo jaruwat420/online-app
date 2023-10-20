@@ -92,6 +92,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (res) {
+                console.log(res);
                 setTimeout(() => {
                     window.location.href = "/backend/index";
                 }, 1000);
