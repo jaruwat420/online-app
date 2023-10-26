@@ -3,7 +3,7 @@
 get_dataTable();
 
 function get_dataTable() {
-    fetch('/backend/get_datatable')
+    fetch('/backend/dataTable')
         .then(res => res.json())
         .then(data => {
                 dataTable = $('#dataTable').DataTable({

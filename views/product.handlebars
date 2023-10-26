@@ -35,20 +35,19 @@
                 <h5 class="modal-title" id="exampleModalLabel">Add product</h5>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" action="/product/create_product" method="post">
+                <form enctype= "multipart/form-data">
                     <div class="mb-3">
                         <label for="categories" class="col-form-label">Categories:</label>
-                        <select class="form-control" aria-label="Default select example">
+                        <select name="categories_select" class="form-control" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             {{#each categories}}
-                                <option value="{{this.category_name_id}}">{{this.category_name}}</option>
+                                <option value="{{this.id}}" name="categories_select">{{this.cat_name}}</option>
                             {{/each}}
                         </select>
-
                     </div>
                     <div class="mb-3">
-                        <label for="category_name" class="col-form-label">name:</label>
-                        <input type="text" name="category_name" class="form-control" id="category_name">
+                        <label for="product_name" class="col-form-label">product name:</label>
+                        <input type="text" name="product_name" class="form-control" id="product_name">
                     </div>
                     <div class="mb-3">
                         <label for="product_image" class="col-form-label">Image:</label>
@@ -56,7 +55,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Description:</label>
-                        <textarea class="form-control" id="category-description"></textarea>
+                        <textarea class="form-control" id="product_description"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Price:</label>
@@ -69,8 +68,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-close-category" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary btn-save-category">Save</button>
+                <button type="submit" class="btn btn-primary btn-save-product">Save</button>
+                <button type="button" class="btn btn-secondary btn-close-product">Close</button>                
             </div>
         </div>
     </div>

@@ -25,17 +25,17 @@ const Categories = sequelize.define('category', {
     },
     category_name: {
         type: DataTypes.STRING,
-        field: 'category_name',
+        field: 'cat_name',
         allowNull: false,
     },
     category_image: {
         type: DataTypes.STRING,
-        field: 'category_image',
+        field: 'cat_image',
         allowNull: false,
     },
     category_detail: {
         type: DataTypes.STRING,
-        field: 'category_detail',
+        field: 'cat_detail',
         defaultValue: false,
     },
 }, {

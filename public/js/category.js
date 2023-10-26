@@ -5,39 +5,35 @@ $('.btn-add-category').click(function () {
     $('#modal_category').modal('show');    
 });
 
-$('.btn-save-category').click(function () { 
-    const categoryName = $('#category_name').val();
-    const categoryImage = $('#category_image')[0].files[0]; // รับไฟล์อัปโหลด
-    const categoryDetail = $('#category_detail').val(); 
+$('.btn-save-category').click(function () {
+
     const formData = new FormData();
-    formData.append('category_name', categoryName);
-    formData.append('category_image', categoryImage);
-    formData.append('category_detail', categoryDetail);
+    formData.append('category_name', $('#category_name').val());
+    formData.append('category_image', $('#category_image')[0].files[0]);
+    formData.append('category_description', $('#category_description').val());
 
     $.ajax({
-        type: "POST",
-        url: "/backend/category",
-        data: formData,
-        contentType: false,
-        processData: false,
-        context: this,
-        success: function (res) {
-            if (res.status == 201) {
-                alert('Success');
-            }
-        },
-        error: function (error) {
-            console.log(error);
+    type: "PUT",
+    url: "/categories/create",
+    data: formData,
+    contentType: false,
+    processData: false,
+    context: this,
+    success: function (res) {
+        if (res.status == 201) {
+            
         }
+    },
+    error: function (error) {
+        console.log(error);
+    }
     });
 });
 
-
 function get_dataTable() {
-    fetch('/backend/get_datatable_category')
+    fetch('/categories/dataTable')
         .then(res => res.json())
         .then(data => {
-            //console.log(data);
                 dataTable = $('#dataTable').DataTable({
                 serverSide: false,
                 data: data,
@@ -49,7 +45,11 @@ function get_dataTable() {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'category_name'},
-                {data: 'category_image'},
+                {data: 'category_image',
+                render: function (data, type,  row){
+                    return `<img src=/uploads/${data} alt="Category Image" style="max-width: 100%; max-height: 100%;" />`;
+                }
+            },
                 {data: 'category_detail'},
                     {data: null,render: function (data, type, row) {
                         return `<button class="btn btn-warning btn-edit" id = "btn-edit" data-id="${data.car_id}">Edit</button>`;
@@ -63,9 +63,13 @@ function get_dataTable() {
             });
         })
         .catch(error => console.error('Error:', error));
-    }
+}
 
-$('#dataTable').on('click', '.btn-delete', function() {
-    const carId = $(this).data('id');
-    //console.log(carId);
+$('.btn-close-category').click(function (e) { 
+    $('#modal_category').modal('hide');
+    
 });
+// $('#dataTable').on('click', '.btn-delete', function() {
+//     const carId = $(this).data('id');
+
+// });

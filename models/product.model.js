@@ -25,29 +25,30 @@ const Product = sequelize.define('product', {
     },
     product_name: {
         type: DataTypes.STRING,
-        field: 'product_name',
+        field: 'pd_name',
         allowNull: false,
     },
     product_image: {
         type: DataTypes.STRING,
-        field: 'product_image',
+        field: 'pd_image',
         allowNull: false,
     },
     product_description: {
         type: DataTypes.STRING,
-        field: 'product_description',
+        field: 'pd_description',
         defaultValue: false,
     },
     product_price: {
         type: DataTypes.STRING,
-        field: '	product_price',
-        defaultValue: '',
+        field: '	pd_price',
+        defaultValue: false,
     },
     product_qty: {
         type: DataTypes.STRING,
-        field: 'product_qty',
-        defaultValue: '',
+        field: 'pd_qty',
+        defaultValue: false,
     },
+    
 }, {
     timestamps: false,
     tableName: 'users',

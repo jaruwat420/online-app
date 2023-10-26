@@ -10,6 +10,7 @@ export const renderSecret = async (req, res) => {
     res.render('secret');
 }
 
+//----------------------------------User--------------------------------------------//
 export const renderAbout = async (req, res) => {
     res.render('backend/index');
 }

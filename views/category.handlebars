@@ -1,5 +1,4 @@
 <h4>Manage User</h4>
-
 <div class="card">
     <div class="card-header">
         <button class="btn btn-success btn-add-category">Add Category</button>
@@ -9,12 +8,12 @@
             <caption>List of users</caption>
             <thead>
                 <tr>
-                    <th scope="col">ลำดับ</th>
+                    <th scope="col">#</th>
                     <th scope="col">Picture</th>  
                     <th scope="col">Category</th>
                     <th scope="col">Details</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +27,7 @@
         </table>
     </div>
 </div>
+
 <div class="modal fade" id="modal_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -35,10 +35,10 @@
                 <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data">
+                <form id="myForm" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Name:</label>
-                        <input type="text" class="form-control" id="category_name">
+                        <input type="text" class="form-control" name="category_name" id="category_name">
                     </div>
                     <div class="mb-3">
                         <label for="category_image" class="col-form-label">Image:</label>
@@ -46,16 +46,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Detail:</label>
-                        <textarea class="form-control" id="category-detail"></textarea>
+                        <textarea class="form-control" id="category_description"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-close-category" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-save-category">Save</button>
+                <button type="button" class="btn btn-success btn-save-category">Save</button>
             </div>
         </div>
     </div>
 </div>
+
 <script src="/assets/jquery/jquery.min.js"></script>
+
 <script src="{{scriptsData.category}}"></script>

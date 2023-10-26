@@ -10,18 +10,15 @@ import cookieParser from "cookie-parser";
 
 dotenv.config({path: './.env'})
 
+//----------------------------------Home----------------------------------//
 export const getRegister = async (req, res) => {
     res.render('auth/register');
 }
-// Register
+
+
+//----------------------------------Register----------------------------------//
 export const register = async (req, res) => {
-    const {
-        firstname,
-        lastname,
-        email,
-        password,
-        passwordConfirm
-    } = req.body;
+    const { firstname, lastname, email, password, passwordConfirm } = req.body;
 
     try {
         if (!(firstname && lastname && email && password && passwordConfirm)) {
@@ -71,6 +68,7 @@ export const register = async (req, res) => {
     }
 }
 
+//----------------------------------Login----------------------------------//
 export const login = async (req, res) => {
    // console.log('Cookies: ', req.cookies)
     try {
@@ -87,6 +85,7 @@ export const login = async (req, res) => {
             }
         });
         if (user && (await bcrypt.compare(password, user.user_password))) {
+            
             // create token
             const token = jwt.sign({
                     user_id: user.user_id,
@@ -100,7 +99,6 @@ export const login = async (req, res) => {
                 maxAge: 3600000, 
                 httpOnly: true, 
             });
-
 
             res.status(201).json({
                 user_id: user.user_id,

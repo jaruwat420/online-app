@@ -8,6 +8,7 @@ import homeRoutes from "./routes/home.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import backendRoutes from "./routes/backend.routes.js";
 import productRoutes from "./routes/product.routes.js";
+import categoriesRoutes from "./routes/categories.routes.js";
 import hbs from "hbs";
 import cookieParser from "cookie-parser";
 
@@ -21,7 +22,9 @@ const port = 3000;
 // form.uploadDir = path.join(__dirname, '/uploads');
 
 hbs.registerPartials(path.join(__dirname,'views/partials'))
-// Handlebars
+
+
+//----------------------------------Handlebars--------------------------------------------//
 app.engine('handlebars', engine({
     defaultLayout: 'layout',
     layoutsDir: path.join(__dirname, 'views/layouts'),
@@ -30,27 +33,29 @@ app.engine('handlebars', engine({
     ]
 }));
 
-// Setting
+//----------------------------------Setting--------------------------------------------//
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static("public"));
 
-// Middleware
+//---------------------------------- Middleware--------------------------------------------//
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser())
 
-// Routes
+//----------------------------------Routes--------------------------------------------//
 app.use(homeRoutes);
 
-// Routes, auth
+//----------------------------------Routes Middleware--------------------------------------------//
 app.use("/backend", backendRoutes);
 app.use("/auth", authRoutes);
 app.use("/redirect", homeRoutes);
 app.use("/product", productRoutes);
+app.use("/categories", categoriesRoutes);
 
+//----------------------------------Listen--------------------------------------------//
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

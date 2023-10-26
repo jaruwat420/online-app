@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { 
     renderHome,
-    getDataTable,
-    createProduct
+    createCategories,
+    dataTableCategories,
 
-} from "../controllers/productController.js";
+} from "../controllers/categoriesController.js";
 
 //--------------------------auth---------------------------//
 import auth from '../middleware/auth.js';
@@ -12,7 +12,7 @@ import auth from '../middleware/auth.js';
 const router = Router();
 
 router.get("/", auth, renderHome);
-router.get("/getdatatable", auth, getDataTable);
-router.put("/create", auth, createProduct);
+router.get("/dataTable", auth, dataTableCategories);
+router.put("/create", auth, createCategories);
 
 export default router;
