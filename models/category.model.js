@@ -9,9 +9,9 @@ const password = process.env.DATABASE_PASSWORD;
 const port = process.env.DATABASE_PORT;
 const database = process.env.DATABASE_NAME;
 
-const sequelize = new Sequelize(database, user, password,{
-    host: host,
-    port: port,
+const sequelize = new Sequelize('notification_system', 'root', 'root',{
+    host: '127.0.0.1',
+    port: 8889,
     dialect: 'mysql',
 });
 
@@ -36,9 +36,10 @@ const Categories = sequelize.define('category', {
     category_detail: {
         type: DataTypes.STRING,
         field: 'cat_detail',
-        defaultValue: false,
+        defaultValue: '',
     },
-}, {
+}, 
+{
     timestamps: false,
     tableName: 'category',
 });

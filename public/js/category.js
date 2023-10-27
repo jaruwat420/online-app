@@ -52,11 +52,11 @@ function get_dataTable() {
             },
                 {data: 'category_detail'},
                     {data: null,render: function (data, type, row) {
-                        return `<button class="btn btn-warning btn-edit" id = "btn-edit" data-id="${data.car_id}">Edit</button>`;
+                        return `<button class="btn btn-warning btn-edit" id = "btn-edit" data-id="${data.id}">Edit</button>`;
                     }
                     },
                     {data: null,render: function (data, type, row) {
-                        return `<button class="btn btn-danger btn-delete" id = "btn-delete" data-id="${data.car_id}">Delete</button>`;
+                        return `<button class="btn btn-danger btn-delete" id = "btn-delete" data-id="${data.id}">Delete</button>`;
                     }
                     }
                 ],
@@ -69,7 +69,37 @@ $('.btn-close-category').click(function (e) {
     $('#modal_category').modal('hide');
     
 });
-// $('#dataTable').on('click', '.btn-delete', function() {
-//     const carId = $(this).data('id');
 
-// });
+
+//------------------------Delete Categories-----------------------------//
+$('#dataTable').on('click', '.btn-delete', function() {
+    var categoriesId = $(this).data('id');
+    Swal.fire({
+        title: 'คุณต้องการลบข้อมูล?',
+        text: 'คุณจะไม่สามารถย้อนกลับได้!!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'ลบข้อมูล!',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            $.ajax({
+                type: 'put',
+                url: '/categories/delete/' + categoriesId,
+                data: { categoriesId: categoriesId },
+                dataType: 'json',
+                success: function (res) {
+                    if (res.status == 201) {
+                        Swal.fire('ลบข้อมูลสำเร็จ!', 'ลบข้อมูลที่เลือกแล้ว.', 'success')                            
+                    }
+                    // Reload DataTable
+                    get_dataTable();
+                },
+                error: function (error) {
+                    Swal.fire('เกิดข้อผิดพลาด', 'เกิดข้อผิดพลาดขณะลบ', 'error');
+                }
+            });
+        }
+    });
+});

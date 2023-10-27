@@ -2,7 +2,9 @@ import { Router } from "express";
 import { 
     renderHome,
     getDataTable,
-    createProduct
+    createProduct,
+    updateProduct,
+    deleteProduct
 
 } from "../controllers/productController.js";
 
@@ -12,7 +14,12 @@ import auth from '../middleware/auth.js';
 const router = Router();
 
 router.get("/", auth, renderHome);
-router.get("/getdatatable", auth, getDataTable);
+router.get("/dataTable", auth, getDataTable);
 router.put("/create", auth, createProduct);
+router.put("/update/:id", auth, updateProduct);
+router.put("/delete/:id", auth, deleteProduct);
+
+
+
 
 export default router;

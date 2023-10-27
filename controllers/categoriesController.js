@@ -1,13 +1,12 @@
 import {response} from "express";
 import Categories from "../models/category.model.js";
-
 import fs from 'fs';
 import formidable from 'formidable';
 import path from "path";
 import {fileURLToPath} from 'url';
+import Product from "../models/product.model.js";
 
-const __filename = fileURLToPath(
-    import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicDir = path.join(__dirname, '../public');
 
@@ -17,7 +16,7 @@ const scriptsData = {
     category: '/js/category.js',
 }
 
-//------------------------index-----------------------------//
+//------------------------render index-----------------------------//
 export const renderHome = async (req, res) => {
     res.render('category', {
         layout: 'admin',
@@ -44,6 +43,7 @@ export const createCategories = async (req, res, next) => {
         const categoryName = fields.category_name;
         const categoryDetail = fields.category_description;
         const [categoryImage] = files.category_image;
+        
         if (categoryImage) {
             const oldPath = categoryImage.filepath;
 
@@ -78,3 +78,42 @@ export const createCategories = async (req, res, next) => {
         }
     });
 };
+
+//------------------------Delete Categories-----------------------------//
+export const deleteCategories = async (req,res) => {
+
+    const categoriesId = req.params.id;
+    try {
+        const categoriesDestroy = await Categories.destroy({
+            where:{
+                id:categoriesId
+            }
+        });
+        res.status(201).json({ message: "ลบข้อมูลสำเร็จ" });      
+    } catch (error) {
+        res.status(400).json({ message: `เกิดข้อผิดพลาดในการลบข้อมูล ${error}.` });
+    } 
+    
+}
+
+//------------------------backend Index-----------------------------//
+export const renderIndex = async (req, res) => {
+    const categories = await Categories.findAll({ attributes: ['id', 'category_name', 'category_image']});
+    const categoriesData = categories.map(category => ({ id: category.id, name: category.category_name }));
+
+    const products = await Product.findAll({ attributes: ['id', 'product_name', 'product_image', 'product_description', 'product_price', 'product_qty'] });
+    const productData = products.map(product => ({
+        id: product.id,
+        name: product.product_name,
+        image: product.product_image,
+        description: product.product_description,
+        price: product.product_price,
+        qty: product.product_qty
+    }));
+
+    res.render('index', {
+        categoriesData: categoriesData,
+        productData: productData,
+    });
+
+}

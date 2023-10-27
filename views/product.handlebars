@@ -9,15 +9,20 @@
             <caption>List of users</caption>
             <thead>
                 <tr>
-                    <th scope="col">ลำดับ</th>
+                    <th scope="col">#</th>
+                    <th scope="col">name</th>
                     <th scope="col">Picture</th>  
-                    <th scope="col">Category</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Categories</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Del</th>
                 </tr>
             </thead>
             <tbody>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -28,6 +33,8 @@
         </table>
     </div>
 </div>
+
+{{!-- Modal Create --}}
 <div class="modal fade" id="modal_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -38,10 +45,10 @@
                 <form enctype= "multipart/form-data">
                     <div class="mb-3">
                         <label for="categories" class="col-form-label">Categories:</label>
-                        <select name="categories_select" class="form-control" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            {{#each categories}}
-                                <option value="{{this.id}}" name="categories_select">{{this.cat_name}}</option>
+                        <select name="category_option" id="categories_select" class="form-control" aria-label="Default select example">
+                            <option selected value="">Open this select menu</option>
+                            {{#each categoriesData}}
+                                <option value="{{this.id}}">{{this.name}}</option>
                             {{/each}}
                         </select>
                     </div>
@@ -69,7 +76,55 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary btn-save-product">Save</button>
-                <button type="button" class="btn btn-secondary btn-close-product">Close</button>                
+                <button type="button" class="btn btn-secondary btn-close-modal">Close</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Modal Update --}}
+<div class="modal fade" id="modal_update_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+            </div>
+            <div class="modal-body">
+                <form enctype= "multipart/form-data">
+                    <div class="mb-3">
+                        <label for="categories" class="col-form-label">Categories:</label>
+                        <select name="categories_select1" class="form-control" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            {{#each categoriesData}}
+                                <option value="{{this.id}}" id="categories_select1" name="categories_select1">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product_name" class="col-form-label">Product name:</label>
+                        <input type="text" name="product_name" class="form-control" id="product_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product_image" class="col-form-label">Image:</label>
+                        <input type="file" name="product_image" class="form-control" id="product_image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="product_description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Price:</label>
+                        <input type="text" name="product_price" class="form-control" id="product_price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Qty:</label>
+                        <input type="text" name="product_qty" class="form-control" id="product_qty">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-save-product">Update</button>
+                <button type="button" class="btn btn-secondary btn-close-modal-edit">Close</button>                
             </div>
         </div>
     </div>

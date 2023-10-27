@@ -94,7 +94,7 @@ $(document).ready(function () {
             success: function (res) {
                 console.log(res);
                 setTimeout(() => {
-                    window.location.href = "/backend/index";
+                    window.location.href = "/dashboard/";
                 }, 1000);
             },
             error: function (error) {

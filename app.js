@@ -6,11 +6,13 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import homeRoutes from "./routes/home.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-import backendRoutes from "./routes/backend.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import categoriesRoutes from "./routes/categories.routes.js";
 import hbs from "hbs";
 import cookieParser from "cookie-parser";
+import  handlebars  from "express-hbs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,12 +28,13 @@ hbs.registerPartials(path.join(__dirname,'views/partials'))
 
 //----------------------------------Handlebars--------------------------------------------//
 app.engine('handlebars', engine({
-    defaultLayout: 'layout',
+    defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views/layouts'),
     partialsDir: [
         path.join(__dirname, 'views', 'partials')
     ]
 }));
+
 
 //----------------------------------Setting--------------------------------------------//
 app.set('view engine', 'handlebars');
@@ -49,9 +52,9 @@ app.use(cookieParser())
 app.use(homeRoutes);
 
 //----------------------------------Routes Middleware--------------------------------------------//
-app.use("/backend", backendRoutes);
+app.use("/dashboard", dashboardRoutes);
+app.use("/user", userRoutes);
 app.use("/auth", authRoutes);
-app.use("/redirect", homeRoutes);
 app.use("/product", productRoutes);
 app.use("/categories", categoriesRoutes);
 
