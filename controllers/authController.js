@@ -75,6 +75,7 @@ export const login = async (req, res) => {
         const {username,password} = req.body;
 
         //validate
+        //const  usernameValidate = username
         if (!(username && password)) {
             res.status(400).json("All input is require!");
             return;

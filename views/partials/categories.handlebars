@@ -6,8 +6,8 @@
                 <ul class="main-categories">
                     {{#each categoriesData}}
                     <li class="main-nav-list">
-                        <a data-toggle="collapse" href="#fruitsVegetable" aria-expanded="false" aria-controls="fruitsVegetable">
-                            <span class="lnr lnr-arrow-right"></span>{{this.name}}<span class="number">(53)</span>
+                        <a data-toggle="collapse"aria-expanded="false" aria-controls="{{this.id}}" class="categories_list" id="categories_list">
+                            <span class="lnr lnr-arrow-right"></span>{{this.name}}<span>(53)</span>
                         </a>
                     </li>                
                     {{/each}}
@@ -30,30 +30,6 @@
                         </ul>
                     </form>
                 </div>
-                {{!-- <div class="common-filter">
-                    <div class="head">Color</div>
-                    <form action="#">
-                        <ul>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio" id="black"name="color">
-                                <label for="black">Black<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio" id="balckleather"name="color">
-                                <label for="balckleather">BlackLeather<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color">
-                                <label for="blackred">Black with red<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color">
-                                <label for="gold">Gold<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey"name="color">
-                                <label for="spacegrey">Spacegrey<span>(19)</span></label>
-                            </li>
-                        </ul>
-                    </form>
-                </div> --}}
                 <div class="common-filter">
                     <div class="head">Price</div>
                     <div class="price-range-area">
@@ -102,40 +78,41 @@
             
             <!-- Start Best Seller -->
             <section class="latest-product-area pb-40 category-list">
-                <div class="row">      
-
+                <div id="productList"  class="row">      
                     {{#each productData}}
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product">                            
-                            <img style="width: 200px;" class="img-fluid" src="/uploads/{{this.image}}" alt="">
-                            <div class="product-details">
-                                <h6>{{this.name}}</h6>
-                                <div class="price">
-                                    <h6>฿{{this.price}}</h6>
-                                    <h6 class="l-through">$210.00</h6>
-                                </div>
-                                <div class="prd-bottom">
-                                    <a href="" class="social-info">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">เพิ่มลงตะกร้า</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">ชอบ</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">เปรียบเทียบ</p>
-                                    </a>
-                                    <a href="" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">ดู</p>
-                                    </a>                                
-                                </div>                             
-                            </div>      
-                        </div>    
-                    </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-product">  
+                                <img id="myimage" class="img-fluid" src="/uploads/{{this.image}}" alt="">
+                                {{!-- <div id="myresult" class="img-zoom-result"></div> --}}
+                                <div class="product-details">
+                                    <h6>{{this.name}}</h6>
+                                    <div class="price">
+                                        <h6>฿{{this.price}}</h6>
+                                        <h6 class="l-through">$210.00</h6>
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a class="social-info add-product" data-id="{{this.id}}">
+                                            <span class="ti-bag"></span>
+                                            <p class="hover-text">เพิ่มลงตะกร้า</p>
+                                        </a>
+                                        <a href="" class="social-info">
+                                            <span class="lnr lnr-heart"></span>
+                                            <p class="hover-text">ชอบ</p>
+                                        </a>
+                                        {{!-- <a href="" class="social-info">
+                                            <span class="lnr lnr-sync"></span>
+                                            <p class="hover-text">เปรียบเทียบ</p>
+                                        </a> --}}
+                                        <a class="social-info product_view">
+                                            <span class="lnr lnr-move"></span>
+                                            <p class="hover-text">ดู</p>
+                                        </a>                                
+                                    </div>                             
+                                </div>      
+                            </div>
+                        </div>
                     {{/each}}
+                </div>
             </section>
             <!-- End Best Seller -->
 
@@ -162,4 +139,6 @@
         </div>
     </div>
 </div>
+<script src="/assets/jquery/jquery.min.js"></script>
+<script src="{{scriptsData.categories_list}}"></script>
 

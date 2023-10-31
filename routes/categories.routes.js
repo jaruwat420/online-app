@@ -4,7 +4,8 @@ import {
     createCategories,
     deleteCategories,
     dataTableCategories,
-    renderIndex
+    renderIndex,
+    findCategories
 
 } from "../controllers/categoriesController.js";
 
@@ -19,6 +20,7 @@ router.put("/create", auth, createCategories);
 router.put("/delete/:id", auth, deleteCategories);
 
 //---------------------Front End---------------------------//
-router.get("/index", auth, renderIndex);
+router.get("/index", renderIndex);
+router.get("/find/:id", findCategories)
 
 export default router;

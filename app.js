@@ -10,9 +10,11 @@ import userRoutes from "./routes/user.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import categoriesRoutes from "./routes/categories.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
 import hbs from "hbs";
 import cookieParser from "cookie-parser";
 import  handlebars  from "express-hbs";
+import session from "express-session";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,6 +49,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser())
+app.use(session({
+    secret: 'you-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure : false}
+}))
 
 //----------------------------------Routes--------------------------------------------//
 app.use(homeRoutes);
@@ -57,6 +65,7 @@ app.use("/user", userRoutes);
 app.use("/auth", authRoutes);
 app.use("/product", productRoutes);
 app.use("/categories", categoriesRoutes);
+app.use("/cart", cartRoutes);
 
 //----------------------------------Listen--------------------------------------------//
 app.listen(port, () => {

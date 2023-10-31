@@ -9,8 +9,9 @@ export const renderHome = async (req, res) => {
     const categories = await Categories.findAll({attributes: ['id', 'category_name', 'category_image']});
     const categoriesData = categories.map(category => ({ id: category.id, name: category.category_name, image: category.category_image}));
 
+
     res.render('home', {
-        title: "homepage",
+        title: "Homepage",
         categoriesData: categoriesData,
     });
 }

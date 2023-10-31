@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.nav-link').on('click', function (e) {
+    $('.nav-login').on('click', function (e) {
         $('#loginModal').modal('show');
     });
 

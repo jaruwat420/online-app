@@ -14,6 +14,7 @@ const publicDir = path.join(__dirname, '../public');
 const scriptsData = {
     datatable: '/js/get_datatable.js',
     category: '/js/category.js',
+    categories_list: '/js/categories_list.js',
 }
 
 //------------------------render index-----------------------------//
@@ -114,6 +115,14 @@ export const renderIndex = async (req, res) => {
     res.render('index', {
         categoriesData: categoriesData,
         productData: productData,
+        scriptsData:scriptsData
     });
+
+}
+//------------------------backend Index-----------------------------//
+export const findCategories = async (req, res) => {
+    const cat_id = (req.params.id); 
+    const data = await Product.findAll({where:{cat_id: cat_id}});   
+    res.json(data);
 
 }

@@ -2,6 +2,7 @@
 <html lang="zxx" class="no-js">
 
 <head>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
@@ -28,17 +29,23 @@
 	<link rel="stylesheet" href="/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/css/magnific-popup.css">
 	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body>
+	<!-- Start Header Area -->
+	{{> header_new}}
+	<!-- End Header Area -->
+
+	<script src="/js/vendor/jquery-2.2.4.min.js"></script> 
 
 	<!-- Start content Area -->
-	{{{ body }}}
+		{{{ body }}}
 	<!-- End content Area -->
 
     {{!-- scripts --}}
-	
     {{> scripts_new}}
+
 </body>
 
 </html>
