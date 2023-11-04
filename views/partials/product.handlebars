@@ -5,92 +5,42 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h1>Latest Products</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et
-                            dolore
-                            magna aliqua.</p>
+                        <h1>สินค้าใหม่</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis, natus!</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <!-- single product -->
+                <!-- single product -->			
+			{{#each productData}}
+				
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
-                        <img class="img-fluid" src="/img/product/p1.jpg" alt="">
+                        <img style="width: 255px; height:200px;" class="img-fluid" src="/uploads/{{this.image}}" alt="">
                         <div class="product-details">
-                            <h6>addidas New Hammer sole
-                                for Sports person</h6>
+                            <h6>{{this.name}}</h6>
                             <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
+                                <h6>${{this.price}}</h6>
+                                <h6 class="l-through">$200.00</h6>
                             </div>
                             <div class="prd-bottom">
-
                                 <a href="" class="social-info">
                                     <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
+                                    <p class="hover-text">เพิ่มลงตะกร้า</p>
                                 </a>
                                 <a href="" class="social-info">
                                     <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
+                                    <p class="hover-text">ชอบ</p>
                                 </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
+                                <a href="/categories/index" class="social-info">
                                     <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
+                                    <p class="hover-text">ดูทั้งหมด</p>
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="/img/product/p2.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole
-                                for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                
-                <!-- single product -->
-                
-                <!-- single product -->
-                
-                <!-- single product -->
-                
-                <!-- single product -->
-                
-                <!-- single product -->                
+                    </div>					
+                </div>       
+				{{/each}}      
             </div>
         </div>
     </div>
@@ -100,7 +50,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h1>Coming Products</h1>
+                        <h1>สินค้ามาแรง</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et
                             dolore
@@ -109,9 +59,8 @@
                 </div>
             </div>
             <div class="row">                
-                <!-- single product -->
-                {{#each categoriesData as |alias|}}
-                    
+                <!-- single product -->       
+				
                 <div class="col-lg-3 col-md-6">
                     <div class="single-product">
                         <img class="img-fluid" src="/img/product/p8.jpg" alt="">
@@ -119,8 +68,8 @@
                             <h6>addidas New Hammer sole
                                 for Sports person</h6>
                             <div class="price">
-                                <h6>alias</h6>
-                                <h6 class="l-through">$210.00</h6>
+                                <h6>{{this.name}}</h6>
+                                <h6 class="l-through">{{this.id}}</h6>
                             </div>
                             <div class="prd-bottom">
 
@@ -144,7 +93,6 @@
                         </div>
                     </div>
                 </div>
-                {{/each}}
             </div>            
         </div>
     </div>

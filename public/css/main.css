@@ -3893,6 +3893,10 @@ label {
     .s_Product_carousel .owl-dots div.active {
       width: 30px; }
 
+.single-prd-item img {
+    max-width: 100%;
+    height: auto;
+  }
 .s_product_text {
   margin-left: -15px;
   margin-top: 65px; }
@@ -4852,7 +4856,12 @@ label {
     position: absolute;
     right: 40px;
     top: 0px; }
-
+.radion_delivery label {
+  display: block;
+  font-weight: 300;
+  color: #222222;
+  margin-bottom: 10px;
+}
 .radion_btn label {
   display: block;
   position: relative;

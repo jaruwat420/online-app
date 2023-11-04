@@ -95,7 +95,7 @@
                     {{#each productData}}
                         <div class="col-lg-4 col-md-6">
                             <div class="single-product">  
-                                <img id="myimage" class="img-fluid" src="/uploads/{{this.image}}" alt="">
+                                <img style="width: 100%; height: 150px;" id="myimage" class="img-fluid" src="/uploads/{{this.image}}" alt="">
                                 {{!-- <div id="myresult" class="img-zoom-result"></div> --}}
                                 <div class="product-details">
                                     <h6>{{this.name}}</h6>
@@ -116,7 +116,7 @@
                                             <span class="lnr lnr-sync"></span>
                                             <p class="hover-text">เปรียบเทียบ</p>
                                         </a> --}}
-                                        <a class="social-info product_view">
+                                        <a href="/product/single-product/{{this.id}}" class="social-info">
                                             <span class="lnr lnr-move"></span>
                                             <p class="hover-text">ดู</p>
                                         </a>                                
@@ -153,11 +153,10 @@
     </div>
 </div>
 
-<!-- Start related-product Area -->
-{{> relate_product}}
-<!-- End related-product Area -->
+
 <script src="/assets/jquery/jquery.min.js"></script>
 <script src="{{scriptsData.categories_list}}"></script>
+
 <!-- start footer Area -->
 {{> footer_new}}
 <!-- End footer Area -->

@@ -47,7 +47,7 @@ function get_dataTable() {
                 {data: 'category_name'},
                 {data: 'category_image',
                 render: function (data, type,  row){
-                    return `<img src=/uploads/${data} alt="Category Image" style="max-width: 100%; max-height: 100%;" />`;
+                    return `<img src=/uploads/${data} alt="Category Image" style="max-width: 100px; max-height: 100%;" />`;
                 }
             },
                 {data: 'category_detail'},

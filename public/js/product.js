@@ -37,37 +37,46 @@ $('.btn-save-product').click(function () {
             icon: 'error',
             title: 'Oops...',
             text: 'กรุณาเลือกประเภทสินค้า',
-        })
-        if (productName === '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'กรุณากรอกชื่อสินค้า',
-            })
-        }
-        if (productImage === 'undefined') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'กรุณาเพิ่มรูปภาพสินค้า',
-            })
-            return;
-        }
-        if (productPrice === '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'กรุณากรอกราคาสินค้า',
-            })
-        }
-        if (productQty === '') {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'กรุณาใส่จำนวนสินค้า',
-            })
-        }
+        });
+        return;
     }
+    
+    if (productName === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'กรุณากรอกชื่อสินค้า',
+        });
+        return;
+    }
+    
+    if (typeof productImage === 'undefined') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'กรุณาเพิ่มรูปภาพสินค้า',
+        });
+        return;
+    }
+    
+    if (productPrice === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'กรุณากรอกราคาสินค้า',
+        });
+        return;
+    }
+    
+    if (productQty === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'กรุณาใส่จำนวนสินค้า',
+        });
+        return;
+    }
+    
     $.ajax({
         type: "PUT",
         url: "/product/create",

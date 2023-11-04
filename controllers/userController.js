@@ -2,7 +2,7 @@ import {response} from "express";
 import User from "../models/user.model.js";
 import path from "path";
 import {fileURLToPath} from 'url';
-
+import Users from "../models/user.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,10 +14,14 @@ const scriptsData = {
 
 //----------------------------------Home--------------------------------------------//
 export const renderHome = async (req, res) => {
+    const user = await Users.findAll({attributes: ['user_id', 'role']});
+    const userData = user.map(user => ({ id: user.user_id, role: user.role }));
+
+
     res.render('user', {
         layout: 'admin',
         title: "Admin || Panel",
-        scriptsData:scriptsData
+        userData: userData
     });
 }
 

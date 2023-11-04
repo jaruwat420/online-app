@@ -22,6 +22,7 @@ const scriptsData = {
 //------------------------render index-----------------------------//
 export const renderHome = async (req, res) =>{
     const cart = req.session.cart;    
+    //console.log(cart);
     res.render('cart', {cart});
 }
 //------------------------Add product to Cart Session-----------------------------//
@@ -46,16 +47,15 @@ export const addCart = async (req, res, next) => {
 
         if (!cartItem) {
             req.session.cart[productId] = {
-                product:productName,
+                id: productId,
+                product: productName,
                 price: productPrice,
                 image: productImg,
                 quantity: 1,
             };
         } else {
             cartItem.quantity += 1;
-        }
-        console.log('ตะกร้า:', req.session.cart);
-        
+        }        
         res.status(200).send({message: 'สินค้าถูกเพิ่มลงในตะกร้า', status: 200});
     } catch (error) {
         res.status(500).send({message: 'เกิดข้อผิดพลาดในการเพิ่มสินค้าลงในตะกร้า', status: 500});
@@ -64,12 +64,54 @@ export const addCart = async (req, res, next) => {
 
 //------------------------Destroy Session-----------------------------//
 export const destroySession = async (req, res) => {
-    const productId = req.body;
-    console.log(productId);
+    const productId = req.body.id; // หรือวิธีดึง productId ออกจาก req.body ของคุณ
+    const cart = req.session.cart;
+    
+    if (cart[productId]) {
+        delete cart[productId];
+        res.status(200).send({message: 'Product removed from cart.', status: 200});
+    } else {
+        res.status(400).send({message: 'Product not found in cart.', status: 400});
+    }
 }
+
 
 //------------------------Checkout-----------------------------//
 export const checkoutProduct = async(req, res) =>{
-    res.render('checkout');
+    const cart = req.session.cart;
+    //console.log(scriptsData);
+    res.render('checkout', {cart});
 }
+
+//------------------------Add product Session New-----------------------------//
+export const addSession = async (req, res) => {
+    const dataFromFrontend = req.body;
+
+    try {
+        if (!req.session.cart) {
+            req.session.cart = {};
+        }
+        dataFromFrontend.forEach(productData => {
+            const proId = productData.proId;
+            const proValue = productData.proValue;
+
+            if (req.session.cart[proId]) {
+                const existingProduct = req.session.cart[proId];
+                existingProduct.quantity = proValue; 
+            } else {
+                req.session.cart[proId] = {
+                    id: proId,
+                    quantity: proValue
+                };
+            }
+        });
+
+        res.status(200).send({ message: 'สินค้าถูกเพิ่มลงในตะกร้า', status: 200 });
+    } catch (error) {
+        res.status(400).send({ message: 'Exception', status: 400 });
+    }
+}
+
+
+
 

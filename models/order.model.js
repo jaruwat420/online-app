@@ -38,14 +38,9 @@ const Order = sequelize.define('order', {
         field: 'order_memo',
         defaultValue: '',
     },
-    order_memo: {
-        type: DataTypes.STRING,
-        field: 'order_memo',
-        defaultValue: '',
-    },
     order_shipping_firs_name: {
         type: DataTypes.STRING,
-        field: 'order_shipping_firs_name',
+        field: 'order_shipping_first_name',
         defaultValue: '',
     },
     order_shipping_last_name: {
@@ -85,7 +80,7 @@ const Order = sequelize.define('order', {
     },
     order_shipping_cost: {
         type: DataTypes.STRING,
-        field: 'order_shipping_postal_code',
+        field: 'order_shipping_cost',
         defaultValue: '',
     },
     order_payment_first_name: {

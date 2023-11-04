@@ -64,3 +64,25 @@ $('#dataTable').on('click', '.btn-delete', function() {
         }
     });
 });
+
+// Modals
+$('.btn-add-user').click(function (e) { 
+    $('#userModal').modal('show');
+    
+});
+
+$('.btn-save-user').click(function (e) { 
+    const fistname = $('#firstname').val();
+    const lastname = $('#lastname').val();
+    const email = $('#email').val();
+    const password = $('#password').val();
+    const passwordConfirm = $('#passwordConfirm').val();
+    const userSelect =('user_select', $('[name=user_option] option:selected').val());
+    console.log(fistname);
+    console.log(lastname);
+    console.log(email);
+    console.log(password);
+    console.log(passwordConfirm);
+    console.log(userSelect);
+    
+});

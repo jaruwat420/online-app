@@ -4,6 +4,7 @@ import {
     renderHome,
     checkoutProduct,
     destroySession,
+    addSession
 
 } from "../controllers/cartController.js";
 
@@ -14,6 +15,7 @@ const router = Router();
 
 router.get("/", renderHome);
 router.put("/add-to-cart/:id", addCart);
+router.put("/add-to-cart/", addSession);
 router.get("/checkout", checkoutProduct);
 router.put("/destroy-session", destroySession);
 

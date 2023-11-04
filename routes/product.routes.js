@@ -4,7 +4,8 @@ import {
     getDataTable,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    productDetail,
 
 } from "../controllers/productController.js";
 
@@ -18,8 +19,6 @@ router.get("/dataTable", auth, getDataTable);
 router.put("/create", auth, createProduct);
 router.put("/update/:id", auth, updateProduct);
 router.put("/delete/:id", auth, deleteProduct);
-
-
-
+router.get("/single-product/:id", productDetail);
 
 export default router;

@@ -128,3 +128,21 @@ export const deleteProduct = async (req, res) => {
     }
     
 }
+
+//--------------------------Product Details-----------------------------------//
+export const productDetail = async (req, res) => {
+    const productId = req.params.id;
+    const productFind = await Product.findAll({where:{id: productId}});
+    const categoriesData = productFind.map(product => ({ id: product.id, name: product.product_name, image: product.product_image, description: product.product_description, price: product.product_price, qty: product.product_qty, category: product.categoryId}));
+    
+    const products = await Product.findAll({ attributes: ['id', 'product_name', 'product_image', 'product_description', 'product_price', 'product_qty'] });
+    const productData = products.map(product => ({
+        id: product.id,
+        name: product.product_name,
+        image: product.product_image,
+        description: product.product_description,
+        price: product.product_price,
+        qty: product.product_qty
+    }));
+    res.render('single-product', {categoriesData,productData});
+}

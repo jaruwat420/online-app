@@ -48,6 +48,11 @@ const Users = sequelize.define('users', {
         field: 'user_password1',
         defaultValue: '',
     },
+    role: {
+        type: DataTypes.STRING, 
+        field: 'role',
+        defaultValue: 'user', 
+    },
 }, {
     timestamps: false,
     tableName: 'users',

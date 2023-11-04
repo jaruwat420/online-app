@@ -1,16 +1,19 @@
 <h4>Manage User</h4>
 <div class="card">
+    <div class="card-header">
+        <button class="btn btn-success btn-add-user">เพิ่ม</button>
+    </div>
     <div class="card-body">
         <table class="table table-striped" id="dataTable" class="display">
             <caption>List of users</caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">usernanme</th>
-                    <th scope="col">lastname</th>
+                    <th scope="col">ชื่อ</th>
+                    <th scope="col">นามสกุล</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">แก้ไข</th>
+                    <th scope="col">ลบ</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,5 +27,53 @@
         </table>
     </div>
 </div>
+
+{{!-- Modal Create  Users--}}
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มผู้ใช้งาน</h5>
+            </div>
+            <div class="modal-body">
+                <form id="myForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ชื่อ:</label>
+                        <input type="text" class="form-control" name="firstname" id="firstname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">นามสกุล:</label>
+                        <input type="text" class="form-control" name="lastname" id="lastname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">อีเมล์:</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                    </div>                   
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">รหัสผ่าน:</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>                   
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ยืนยันรหัสผ่าน:</label>
+                        <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm">
+                    </div>                   
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">ระดับ:</label>
+                        <select name="user_option" id="user_select" class="form-control" aria-label="Default select example">
+                            <option selected value="">Open this select menu</option>
+                            {{#each userData}}
+                                <option value="{{this.id}}">{{this.role}}</option>
+                            {{/each}}
+                        </select>
+                    </div>                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-close-user" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-success btn-save-user">บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/assets/jquery/jquery.min.js"></script>
-<script src="{{scriptsData.dataTable}}"></script>
+<script src="/js/user_datatable.js"></script>

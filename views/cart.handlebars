@@ -1,40 +1,40 @@
-
-    <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>Shopping Cart</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/">หน้าแรก<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/cart">ตะกร้าสินค้า</a>
-                    </nav>
-                </div>
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shopping Cart</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">หน้าแรก<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/cart">ตะกร้าสินค้า</a>
+                </nav>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-	<!-- start category Area -->
+<!-- start category Area -->
 <!--================Cart Area =================-->
 <section class="cart_area">
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
                 <table class="table">
-                    <thead>                
+                    <thead>
                         <tr>
                             <th scope="col">รายการสินค้า</th>
                             <th scope="col">ราคา</th>
                             <th scope="col">จำนวน</th>
-                            <th scope="col">ทั้งหมด</th>
+                            <th scope="col">คลัง</th>
+                            <th scope="col">ทั้งหมด</th>                            
                         </tr>
                     </thead>
                     <tbody>
-                    {{#each cart }}
+                        {{#each cart }}
                         <tr>
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img style="width: 250px;" src="/uploads/{{this.image}}" alt="" />
+                                        <img style="width: 200px;" src="/uploads/{{this.image}}" alt="" />
                                     </div>
                                     <div class="media-body">
                                         <p>{{this.product}}</p>
@@ -47,22 +47,24 @@
                             <td>
                                 <div class="product_count">
                                     <input type="hidden" id="proId" value="{{this.id}}" />
-                                    <input type="text" name="qty" class="toggle-add" id="sst" maxlength="12" value="{{this.quantity}}" title="Quantity:" class="input-text qty" />
-                                    <button
-                                        class="increase items-count" type="button"><i
+                                    <input type="text" name="qty" class="toggle-add" id="sst" maxlength="12"
+                                        value="{{this.quantity}}" title="Quantity:" class="input-text qty" />
+                                    <button class="increase items-count" type="button"><i
                                             class="lnr lnr-chevron-up"></i>
                                     </button>
-                                    <button
-                                        class="reduced items-count" type="button"><i
+                                    <button class="reduced items-count" type="button"><i
                                             class="lnr lnr-chevron-down"></i>
                                     </button>
                                 </div>
                             </td>
                             <td>
-                                <h5 class="total_result">720.00</h5>
+                                <h5>{{this.quantity}}</h5>
                             </td>
-                        </tr>    
-                    {{/each}}                   
+                            <td>
+                                <h5 class="total_result"></h5>
+                            </td>
+                        </tr>
+                        {{/each}}
                         <tr class="bottom_button">
                             <td>
                                 <a class="gray_btn" href="#">อัพเดท ตะกร้าสินค้า</a>
@@ -86,7 +88,6 @@
 
                             </td>
                             <td>
-
                             </td>
                             <td>
                                 <h5>รวมทั้งหมด</h5>
@@ -108,26 +109,10 @@
                             <td>
                                 <div class="shipping_box">
                                     <ul class="list">
-                                        <li><a href="#">อัตราคงที่: $5.00</a></li>
-                                        <li><a href="#">จัดส่งฟรี</a></li>
-                                        <li><a href="#">อัตราคงที่: $10.00</a></li>
-                                        <li class="active"><a href="#">จัดส่งในพื้นที่: $2.00</a></li>
+                                        <li>
+                                            <a class="shipping">อัตราคงที่: 35.00 บาท</a>
+                                        </li>
                                     </ul>
-                                    {{!--<h6>Calculate Shipping
-                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                    </h6>
-                                    <select class="shipping_select">
-                                        <option value="1">Bangladesh</option>
-                                        <option value="2">India</option>
-                                        <option value="4">Pakistan</option>
-                                    </select>
-                                    <select class="shipping_select">
-                                        <option value="1">Select a State</option>
-                                        <option value="2">Select a State</option>
-                                        <option value="4">Select a State</option>
-                                    </select>
-                                    <input type="text" placeholder="Postcode/Zipcode" />
-                                    <a class="gray_btn" href="#">Update Details</a> --}}
                                 </div>
                             </td>
                         </tr>
@@ -143,8 +128,8 @@
                             </td>
                             <td>
                                 <div class="checkout_btn_inner d-flex align-items-center">
-                                    <a class="gray_btn" href="#">Continue Shopping</a>
-                                    <a class="primary-btn" href="#">Proceed to checkout</a>
+                                    {{!-- <a class="gray_btn" href="#">Continue Shopping</a> --}}
+                                    <a class="primary-btn btn-process">สั่งสินค้า</a>
                                 </div>
                             </td>
                         </tr>
@@ -155,43 +140,27 @@
     </div>
 </section>
 <!--================End Cart Area =================-->
-	<!-- end category Area -->
+<!-- end category Area -->
 
-    <!-- start product Area -->
-	{{> product}}
-	<!-- end product Area -->
 
-    <!--Modal Area -->
-    {{> modals}}
-    <!-- end Modal Area -->
+<!--Modal Area -->
+{{> modals}}
+<!-- end Modal Area -->
 
-	<!-- Start exclusive deal Area -->
-    {{> exclusive}}
-	<!-- End exclusive deal Area -->
-
-	<!-- Start brand Area -->
-    {{> brand }}
-	<!-- End brand Area -->
-
-	<!-- Start related-product Area -->
-	{{> relate_product}}
-	<!-- End related-product Area -->
-
-	<!-- start footer Area -->
-	{{> footer_new}}
-	<!-- End footer Area -->
-    
-    {{!-- Start Scripts --}}
+<!-- start footer Area -->
+{{> footer_new}}
+<!-- End footer Area -->
+<script src="/assets/jquery/jquery.min.js"></script>
+{{!-- Start Scripts --}}
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         const inputElements = $('.toggle-add');
         const increaseButtons = document.querySelectorAll('.increase.items-count');
         const reducedButtons = document.querySelectorAll('.reduced.items-count');
         const totalResults = document.querySelectorAll('.total_result');
-        const totalSum = document.querySelectorAll('.totalSum');
+        const totalSum = $('.totalSum'); // ใช้ .totalSum เป็น jQuery object
         const priceElements = document.querySelectorAll('h5.product_price');
-        const proIds = document.querySelectorAll('#proId');
-        let sum = 0;
+        const proId = document.querySelectorAll('#proId');
 
         // วนรอบเพื่อกำหนดค่าเริ่มต้นสำหรับ totalResult
         priceElements.forEach((priceElement, i) => {
@@ -199,7 +168,6 @@
             const inputValue = parseInt(inputElements.eq(i).val(), 10);
             const result = dataPrice * inputValue;
             totalResults[i].innerText = result;
-            const proId = proIds[i].values;
         });
 
         // รอบสำหรับปุ่มเพิ่มสินค้า
@@ -210,59 +178,97 @@
                 const dataPrice = parseFloat(priceElements[i].getAttribute('data-price'));
                 const priceResult = dataPrice * (currentValue + 1);
                 totalResults[i].innerText = priceResult;
+                updateTotalSum();
             });
         });
 
         // รอบสำหรับปุ่มลดสินค้า
         reducedButtons.forEach((reducedButton, i) => {
-        reducedButton.addEventListener('click', () => {
-            const currentValue = parseInt(inputElements.eq(i).val(), 10);
-            if (currentValue > 1) {
-                inputElements.eq(i).val(currentValue - 1);
-                const dataPrice = parseFloat(priceElements[i].getAttribute('data-price'));
-                const priceResult = dataPrice * (currentValue - 1);
-                totalResults[i].innerText = priceResult;
-            }
-            if (currentValue - 1 === 0) {
+            reducedButton.addEventListener('click', () => {
+                const currentValue = parseInt(inputElements.eq(i).val(), 10);
+                if (currentValue > 1) {
+                    const inputElement = inputElements.eq(i);
+                    const dataPrice = parseFloat(priceElements[i].getAttribute('data-price'));
+                    inputElement.val(currentValue - 1);
+                    const priceResult = dataPrice * (currentValue - 1);
+                    totalResults[i].innerText = priceResult;
+                    updateTotalSum();
+                } else if (currentValue - 1 === 0) {
+                    const id = proId[i].value;
                     Swal.fire({
                         title: 'คุณต้องการลบสินค้าออกจากตะกร้า?',
                         text: "หากคุณลบจะไม่สามารถย้อนกลับได้!",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
+                        confirmButtonColor: '#FFBA00',
                         cancelButtonColor: '#d33',
                         cancelButtonText: 'ยกเลิก',
                         confirmButtonText: 'ลบสินค้า!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // ส่งคำขอ Fetch ในนี้เมื่อผู้ใช้กด "ใช่"
-                            fetch('/cart/destroy-session', {
-                                method: 'PUT',
-                                body: JSON.stringify({ proId: proId }),
-                                headers: {
-                                    'Content-Type': 'application/json'
+                            $.ajax({
+                                type: "PUT",
+                                url: "/cart/destroy-session",
+                                data: { id: id },
+                                dataType: "JSON",
+                                success: function (res) {
+                                    if (res.status === 200) {
+                                        window.location.reload();
+                                    }
                                 }
-                            })
-                                .then(res => res.json())
-                                .then(data => {
-                                    // ดำเนินการเมื่อคำขอ Fetch เสร็จสิ้น
-                                    // เช่น อัพเดท UI หรือแสดงข้อความยืนยัน
-                                    Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-                                })
-                                .catch(error => {
-                                    console.error('เกิดข้อผิดพลาดในการส่งข้อมูลไปยังเซิร์ฟเวอร์:', error);
-                                });
+                            });
                         }
                     });
-            }
+                }
+            });
+        });
+
+        // ฟังก์ชันสำหรับคำนวณและอัปเดตผลรวมทั้งหมด
+        function updateTotalSum() {
+            let resultSum = 0;
+            totalResults.forEach((e, i) => {
+                const initialValue = e.innerHTML;
+                const numericValue = parseFloat(initialValue);
+
+                if (!isNaN(numericValue)) {
+                    resultSum += numericValue;
+                }
+            });
+            totalSum.text(resultSum);
+        }
+        updateTotalSum();
+
+        //Payment
+        const paymentButton = document.querySelector('.primary-btn.btn-process');
+        paymentButton.addEventListener('click', () => {
+            const qtyInputs = document.querySelectorAll('.toggle-add');
+            const proIdInputs = document.querySelectorAll('#proId');
+            const dataToSubmit = [];
+            qtyInputs.forEach((qtyInput, index) => {
+                const qtyValue = qtyInput.value;
+                const proIdInput = proIdInputs[index];
+                const proIdValue = proIdInput.value;
+
+                dataToSubmit.push({
+                    proId: proIdValue,
+                    proValue: qtyValue
+                });
+            });
+            $.ajax({
+                type: "PUT",
+                url: "/cart/add-to-cart",
+                data: JSON.stringify(dataToSubmit),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res) {
+                    if (res.status === 200) {
+                        window.location.reload();       
+                        window.location.href = "/cart/checkout"         
+                    }
+                }
+            });
         });
     });
-        for (let i = 0; i < totalResults.length; i++){
-            const value = parseFloat(totalResults[i].textContent);
-            sum += value;
-            $('.totalSum').text(sum);
-        }
-    
-});
 </script>
-    {{!-- end Scripts --}}
+
+{{!-- end Scripts --}}

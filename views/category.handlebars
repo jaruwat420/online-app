@@ -1,7 +1,7 @@
-<h4>Manage User</h4>
+<h4>จัดการประเภทสินค้า</h4>
 <div class="card">
     <div class="card-header">
-        <button class="btn btn-success btn-add-category">Add Category</button>
+        <button class="btn btn-success btn-add-category">เพิ่ม</button>
     </div>
     <div class="card-body">
         <table class="table table-striped" id="dataTable" class="display">
@@ -9,11 +9,11 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>  
-                    <th scope="col">Picture</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">ชื่อสินค้า</th>  
+                    <th scope="col">รูปภาพ</th>
+                    <th scope="col">รายละเอียด</th>
+                    <th scope="col">แก้ไข</th>
+                    <th scope="col">ลบ</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,31 +28,32 @@
     </div>
 </div>
 
+{{!-- Modal --}}
 <div class="modal fade" id="modal_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มประเภทสินค้า</h5>
             </div>
             <div class="modal-body">
                 <form id="myForm" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Name:</label>
+                        <label for="recipient-name" class="col-form-label">ชื่อประเภทสินค้า:</label>
                         <input type="text" class="form-control" name="category_name" id="category_name">
                     </div>
                     <div class="mb-3">
-                        <label for="category_image" class="col-form-label">Image:</label>
+                        <label for="category_image" class="col-form-label">รูปภาพ:</label>
                         <input type="file" name="category_image" class="form-control" id="category_image">
                     </div>
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Detail:</label>
+                        <label for="message-text" class="col-form-label">รายละเอียด:</label>
                         <textarea class="form-control" id="category_description"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-close-category" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success btn-save-category">Save</button>
+                <button type="button" class="btn btn-secondary btn-close-category" data-bs-dismiss="modal">ปิด</button>
+                <button type="button" class="btn btn-success btn-save-category">บันทึก</button>
             </div>
         </div>
     </div>

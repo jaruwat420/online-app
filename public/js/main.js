@@ -3,6 +3,9 @@ $(document).ready(function () {
         $('#loginModal').modal('show');
     });
 
+    $('.message-error').css('display', 'none')
+    $('.message-error2').css('display', 'none')
+
     // Register form
     $('.btn-singUp').click(function (e) {
         const usernameValue = document.getElementById('r_username').value;
@@ -70,15 +73,6 @@ $(document).ready(function () {
         const usernameValue = document.getElementById('l_username').value;
         const passwordValue = document.getElementById('l_password').value;
 
-        if (usernameValue.length <= 8) {
-            alert(`กรุณากรอกรหัสอีเมลมากกว่า 8 ตัวอักษร`);
-            return;
-
-        } else if (passwordValue.length <= 7) {
-
-            alert(`กรุณากรอกรหัสผ่านที่มากกว่า 8 ตัวอักษร`);
-            return;
-        }
         const newUser = {
             username: document.getElementById('l_username').value,
             password: document.getElementById('l_password').value,
@@ -92,13 +86,17 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (res) {
-                console.log(res);
+                
                 setTimeout(() => {
                     window.location.href = "/dashboard/";
                 }, 1000);
             },
-            error: function (error) {
-                Swal.fire('เกิดข้อผิดพลาด', 'พบอีเมลนี้ในระบบแล้ว โปรดใช้อีเมลอื่น!', 'error');
+            error: function (res) {
+                if (res.status === 400) {
+                    $('.message-error').css('display', 'block');
+                    $('.message-error').html('<p>' + res.message + '</p>');
+                    
+                }
             }
         });
     });
