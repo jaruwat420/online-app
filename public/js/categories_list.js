@@ -17,7 +17,9 @@ for (let i = 0; i < categoriesList; i++) {
                     html += `                         
                         <div class="col-lg-4 col-md-6">
                             <div class="single-product">  
+                            <a href="/product/single-product/${res[i].id}">
                                 <img class="img-fluid" src="/uploads/${res[i].product_image}" alt="">
+                            </a>
                                 <div class="product-details">
                                     <h6>${res[i].product_name}</h6>
                                     <div class="price">

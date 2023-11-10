@@ -24,6 +24,7 @@ $('.btn-save-product').click(function () {
     formData.append('product_image', $('#product_image')[0].files[0]);
     formData.append('product_description', $('#product_description').val());
     formData.append('product_price', $('#product_price').val());
+    formData.append('product_price_sale', $('#product_price_sale').val());
     formData.append('product_qty', $('#product_qty').val());
     
     // validate
@@ -31,6 +32,7 @@ $('.btn-save-product').click(function () {
     const productName =  $('#product_name').val();
     const productImage =  $('#product_image')[0].files[0];
     const productPrice = $('#product_price').val();
+    const productPriceSale = $('#product_price_sale').val();
     const productQty = $('#product_qty').val();
     if (selected === '') {
         Swal.fire({
@@ -60,6 +62,14 @@ $('.btn-save-product').click(function () {
     }
     
     if (productPrice === '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'กรุณากรอกราคาสินค้า',
+        });
+        return;
+    }
+    if (productPriceSale === '') {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',

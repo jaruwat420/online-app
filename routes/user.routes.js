@@ -4,14 +4,15 @@ import {
     getDataTable,
     deleteUser,
 
+
 } from "../controllers/userController.js";
 
-import auth from '../middleware/auth.js';
 
 const router = Router();
 
-router.get("/", auth, renderHome);
-router.get("/dataTable", auth, getDataTable);
-router.put("/delete/:id", auth, deleteUser);
+router.get("/", renderHome);
+router.get("/dataTable", getDataTable);
+router.put("/delete/:id", deleteUser);
+
 
 export default router;

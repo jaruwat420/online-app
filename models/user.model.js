@@ -48,9 +48,39 @@ const Users = sequelize.define('users', {
         field: 'user_password1',
         defaultValue: '',
     },
-    role: {
+    user_address: {
+        type: DataTypes.STRING,
+        field: 'user_address',
+        defaultValue: '',
+    },
+    user_phone: {
+        type: DataTypes.STRING,
+        field: 'user_phone',
+        defaultValue: '',
+    },
+    user_district: {
+        type: DataTypes.STRING,
+        field: 'user_district',
+        defaultValue: '',
+    },
+    user_county: {
+        type: DataTypes.STRING,
+        field: 'user_county',
+        defaultValue: '',
+    },
+    user_city: {
+        type: DataTypes.STRING,
+        field: 'user_city',
+        defaultValue: '',
+    },
+    user_postal_code: {
+        type: DataTypes.STRING,
+        field: 'user_postal_code',
+        defaultValue: '',
+    },
+    user_role: {
         type: DataTypes.STRING, 
-        field: 'role',
+        field: 'user_role',
         defaultValue: 'user', 
     },
 }, {

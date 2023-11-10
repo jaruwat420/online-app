@@ -14,32 +14,34 @@
 <!--================Checkout Area =================-->
 <section class="checkout_area section_gap">
     <div class="container">
-        <div class="returning_customer">
-            <div class="check_title">
-                <h2>ลูกค้าที่กลับมา? <a href="/auth/registration">คลิกที่นี่เพื่อสร้างบัญชีใหม่</a></h2>
-            </div>
-            <p>หากคุณเคยซื้อสินค้ากับเรามาก่อน โปรดกรอกรายละเอียดของคุณในช่องด้านล่าง หากคุณเป็นลูกค้าใหม่
-                โปรดไปที่ส่วนการเรียกเก็บเงินและการจัดส่ง.</p>
-            <form class="row contact_form" action="/auth/doLogin" method="post" novalidate="novalidate">
-                <div class="col-md-6 form-group p_star">
-                    <input type="text" class="form-control" id="username" name="username"
-                        placeholder="Username or Email">
-                    {{!-- <span class="placeholder" data-placeholder="Username or Email"></span> --}}
+        {{#if sessionLogin}}
+            
+        {{else}}
+            <div class="returning_customer">
+                <div class="check_title">
+                    <h2>ลูกค้าที่กลับมา? <a href="/auth/registration">คลิกที่นี่เพื่อสร้างบัญชีใหม่</a></h2>
                 </div>
-                <div class="col-md-6 form-group p_star">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                    {{!-- <span class="placeholder" data-placeholder="Password"></span> --}}
-                </div>
-                <div class="col-md-12 form-group">
-                    <button type="submit" value="submit" class="primary-btn">เข้าสู่ระบบ</button>
-                    <div class="creat_account">
-                        <input type="checkbox" id="f-option" name="selector">
-                        <label for="f-option">จดจำฉัน</label>
+                <p>หากคุณเคยซื้อสินค้ากับเรามาก่อน โปรดกรอกรายละเอียดของคุณในช่องด้านล่าง หากคุณเป็นลูกค้าใหม่
+                    โปรดไปที่ส่วนการเรียกเก็บเงินและการจัดส่ง.</p>
+                <form class="row contact_form" action="/auth/doLogin" method="post" novalidate="novalidate">
+                    <div class="col-md-6 form-group p_star">
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="Username or Email">
                     </div>
-                    <a class="lost_pass" href="#">ลืมรหัสผ่าน?</a>
-                </div>
-            </form>
-        </div>
+                    <div class="col-md-6 form-group p_star">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <button type="submit" value="submit" class="primary-btn">เข้าสู่ระบบ</button>
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option" name="selector">
+                            <label for="f-option">จดจำฉัน</label>
+                        </div>
+                        <a class="lost_pass" href="#">ลืมรหัสผ่าน?</a>
+                    </div>
+                </form>
+            </div>
+        {{/if}}
         <div class="cupon_area">
             <div class="check_title">
                 <h2>มีคูปองไหม? <a href="#">คลิกที่นี่เพื่อกรอกรหัสของคุณ</a></h2>
@@ -51,38 +53,34 @@
             <div class="row">
                 <div class="col-lg-8">
                     <h3>รายละเอียดการเรียกเก็บเงิน</h3>
-                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                    <form class="row contact_form" novalidate="novalidate">
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="first" name="name">
-                            <span class="placeholder" data-placeholder="ชื่อ"></span>
+                            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="ชื่อ" value="{{sessionUser.firstname}}">
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="last" name="name">
-                            <span class="placeholder" data-placeholder="นามสกุล"></span>
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล" value="{{sessionUser.lastname}}">
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="number" name="number">
-                            <span class="placeholder" data-placeholder="เบอร์โทรศัพท์มือถือ"></span>
+                            <input type="text" class="form-control" id="telephone" name="telephone" placeholder="เบอร์โทรศัพท์มือถือ" value="{{sessionUser.phone}}">
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="email" name="compemailany">
-                            <span class="placeholder" data-placeholder="Email Address"></span>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Email Address"  value="{{sessionUser.email}}">
                         </div>
 
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add1" name="add1">
-                            <span class="placeholder" data-placeholder="ที่อยู่ 01"></span>
+                            <input type="text" class="form-control" id="address1" name="address1" placeholder="ที่อยู่ 01"  value="{{sessionUser.address}}">
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add2" name="add2">
-                            <span class="placeholder" data-placeholder="ที่อยู่ 02"></span>
+                            <input type="text" class="form-control" id="address2" name="address2" placeholder="ที่อยู่ 02" >
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="city" name="city">
-                            <span class="placeholder" data-placeholder="เมือง"></span>
+                            <input type="text" class="form-control" id="district" name="district" placeholder="ตำบล"  value="{{sessionUser.district:}}">
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <select class="country_select">
+                            <input type="text" class="form-control" id="county" name="county" placeholder="อำเภอ"  value="{{sessionUser.county}}">
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <select class="province_select" id="province_select">
                                 <option value="" selected>--------- เลือกจังหวัด ---------</option>
                                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                 <option value="กระบี่">กระบี่ </option>
@@ -165,7 +163,7 @@
                             </select>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="รหัสไปรษณีย์">
+                            <input type="text" class="form-control" id="zip" name="zip" placeholder="รหัสไปรษณีย์" value="{{sessionUser.postal_code}}">
                         </div>
                         {{!-- <div class="col-md-12 form-group">
                             <div class="creat_account">
@@ -177,10 +175,17 @@
                             <div class="creat_account">
                                 <h3>รายละเอียดการจัดส่ง</h3>
                                 <input type="checkbox" id="f-option3" name="selector">
+                                <a href=""></a>
                                 <label for="f-option3">จัดส่งไปยังที่อยู่อื่น?</label>
                             </div>
-                            <textarea class="form-control" name="message" id="message" rows="1"
-                                placeholder="Order Notes"></textarea>
+                            <div class="collapse" id="collapseAddress">
+                                <div class="card card-body">
+                                    <textarea class="form-control" name="message" id="message" rows="1"
+                                        placeholder="Order Notes">
+                                    </textarea>
+                                </div>
+                            </div>
+                            
                         </div>
                     </form>
                 </div>
@@ -188,34 +193,29 @@
                     <div class="order_box">
                         <h2>รายการสินค้า</h2>
                         <ul class="list">
-                            <li><a href="#">ชื่อสินค้า<span>ราคา</span></a></li>
+                            <li><a href="/cart/">ชื่อสินค้า<span>ราคา</span></a></li>
                             {{#each cart }}
                             <li><a href="/cart/">{{this.product}}<span data-set="{{this.quantity}}"
-                                        class="middle">x{{this.quantity}}</span><span data-set="{{this.price}}"
-                                        class="last">{{this.price}}</span></a></li>
+                                        class="middle">x{{this.quantity}}</span>
+                                    <span data-set="{{this.price}}" class="last">{{this.price}}</span></a></li>
                             {{/each}}
                         </ul>
                         <ul class="list list_2">
                             <li><a href="#">รวม <span class="text-result"></span></a></li>
-                            <li><a href="#">ค่าส่ง <span class="shipping">35.00</span></a></li>
+                            <li><a href="#">ค่าส่ง <span class="shipping">27.00</span></a></li>
                             <li><a href="#">ยอดรวมทั้งหมด <span class="result"></span></a></li>
                         </ul>
                         <ul class="list list_2">
-                            <li><a href="#">ตัวเลือกการจัดส่ง<span class="shipping222">EMS</span></a></li>
+                            <li><a href="#">ประเภทการจัดส่ง<span class="shipping_value">ธรรมดา</span></a></li>
                         </ul>
                         <div class="payment_item">
                             <div class="radion_delivery">
-        
                                 <div class="col-md-12">
-                                    <button class="genric-btn primary-border mb-2" id="btn-modal-delivery" type="button">
+                                    <button class="genric-btn primary-border mb-2" id="btn-modal-delivery"
+                                        type="button">
                                         เปลี่ยนตัวเลือกการจัดส่งสินค้า
                                     </button>
-                                    <div class="collapse" id="collapseExample">
-                                        <div class="card card-body">
-                                            Some placeholder content for the collapse component. This panel is hidden by
-                                            default but revealed when the user activates the relevant trigger.
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -223,12 +223,12 @@
                             <div class="radion_delivery">
                                 <label for="f-delivery mb-5">ตัวเลือกการชำระเงิน</label>
                                 <div class="col-12">
-                                    <button class="genric-btn primary-border">QR Code</button>
-                                    <button class="genric-btn primary-border">เก็บเงินปลายทาง</button>
+                                    <a class="genric-btn primary-border" id="qrCodeBtn">QR Code</a>
+                                    <a class="genric-btn primary-border" id="cashOnDeliveryBtn">เก็บเงินปลายทาง</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="payment_item">
+                        {{!-- <div class="payment_item">
                             <div class="radion_btn">
                                 <input type="radio" id="f-option5" name="selector">
                                 <label for="f-option5">จ่ายผ่านธนาคาร</label>
@@ -236,8 +236,8 @@
                             </div>
                             <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
                                 Store Postcode.</p>
-                        </div>
-                        <div class="payment_item active">
+                        </div> --}}
+                        {{!-- <div class="payment_item active">
                             <div class="radion_btn">
                                 <input type="radio" id="f-option6" name="selector">
                                 <label for="f-option6">Paypal </label>
@@ -246,13 +246,13 @@
                             </div>
                             <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
                                 account.</p>
-                        </div>
-                        <div class="creat_account">
+                        </div> --}}
+                        <div class="creat_account mt-3">
                             <input type="checkbox" id="f-option4" name="selector">
                             <label for="f-option4">ฉันได้อ่านและยอมรับข้อกำหนดและเงื่อนไขแล้ว</label>
                             <a href="#">*</a>
                         </div>
-                        <a class="primary-btn" href="#">สั่งสินค้า</a>
+                        <a class="primary-btn" id="btn-order-product">สั่งสินค้า</a>
                     </div>
                 </div>
             </div>
@@ -287,7 +287,8 @@
                                 <font color="#47a500">ส่งฟรี สูงสุด 10 บาท</font><br>
                                 <br>
                                 <div class="button-group-area">
-                                    <a class="genric-btn default choose-delivery" data-name="Ems"  data-price="35"  ><b>เลือก</b></a>
+                                    <a class="genric-btn default choose-delivery" data-name="พัสดุเร่งด่วน"
+                                        data-price="35.00"><b>เลือก</b></a>
                                 </div>
                             </td>
                         </tr>
@@ -308,7 +309,8 @@
                                 <font color="#47a500">ส่งฟรี สูงสุด 10 บาท</font><br>
                                 <br>
                                 <div class="button-group-area">
-                                    <a class="genric-btn default choose-delivery" data-name="Ecopost" data-price="27" ><b>เลือก</b></a>
+                                    <a onclick="reload();" class="genric-btn default " data-name="Ecopost"
+                                        data-price="27"><b>เลือก</b></a>
                                 </div>
                             </td>
                         </tr>
@@ -321,11 +323,110 @@
         </div>
     </div>
 </div>
-
 <!--================End Checkout Area =================-->
 
 <!-- start product Area -->
-{{> product}}
+<section class="owl-carousel active-product-area section_gap">
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>สินค้าใหม่</h1>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis, natus!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- single product -->			
+			{{#each productData}}
+				
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <a>
+                        <img style="width: 255px; height:200px;" class="img-fluid" src="/uploads/{{this.image}}" alt="">
+                        </a>
+                        <div class="product-details">
+                            <h6>{{this.name}}</h6>
+                            <div class="price">
+                                <h6>${{this.price}}</h6>
+                                <h6 class="l-through">$200.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">เพิ่มลงตะกร้า</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">ชอบ</p>
+                                </a>
+                                <a href="/categories/index" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">ดูทั้งหมด</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>					
+                </div>       
+				{{/each}}      
+            </div>
+        </div>
+    </div>
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>สินค้ามาแรง</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                            incididunt ut labore et
+                            dolore
+                            magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">                
+                <!-- single product -->       
+				
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="/img/product/p8.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole
+                                for Sports person</h6>
+                            <div class="price">
+                                <h6>{{this.name}}</h6>
+                                <h6 class="l-through">{{this.id}}</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</section>
 <!-- end product Area -->
 
 <script src="/js/vendor/jquery-2.2.4.min.js"></script>

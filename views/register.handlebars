@@ -3,10 +3,10 @@
 	<div class="container">
 		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
 			<div class="col-first">
-				<h1>Login/Register</h1>
+				<h1>เข้าสู่ระบบ/สมัครสมาชิก</h1>
 				<nav class="d-flex align-items-center">
-					<a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-					<a href="#">Login/Register</a>
+					<a href="/">หน้าแรก<span class="lnr lnr-arrow-right"></span></a>
+					<a href="#">เข้าสู่ระบบ/สมัครสมาชิก</a>
 				</nav>
 			</div>
 		</div>
@@ -22,7 +22,7 @@
 					<img class="img-fluid" src="/img/login.jpg" alt="">
 					<div class="hover">
 						<h4>ใหม่สำหรับเว็บไซต์ของเรา?</h4>
-						<p>หากคุณเป็นสมาชิกอยู่แล้ว</p> 
+						<p>หากคุณเป็นสมาชิกอยู่แล้ว</p>
 						<a class="primary-btn" href="/auth/doLogin">เข้าสู่ระบบ</a>
 					</div>
 				</div>
@@ -30,7 +30,8 @@
 			<div class="col-lg-6">
 				<div class="login_form_inner">
 					<h3>สร้างบัญชีใหม่</h3>
-					<form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate">
+					<form class="row login_form" action="/auth/registration" method="post" id="contactForm"
+						novalidate="novalidate">
 						<div class="col-md-12 form-group">
 							<input type="text" class="form-control" id="firstname" name="firstname" placeholder="ชื่อ">
 						</div>
@@ -38,16 +39,32 @@
 							<input type="text" class="form-control" id="lastname" name="lastname" placeholder="นามสกุล">
 						</div>
 						<div class="col-md-12 form-group">
-							<input type="email" class="form-control" id="email" name="email" placeholder="example@example.com" >
+							<input type="email" class="form-control" id="email" name="email" placeholder="อีเมล์">
 						</div>
 						<div class="col-md-12 form-group">
-							<input type="password" class="form-control" id="password" name="password"
-								placeholder="รหัสผ่าน">
+							<input type="password" class="form-control" id="password" name="password" placeholder="รหัสผ่าน">
 						</div>
 						<div class="col-md-12 form-group">
 							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="ยืนยันรหัสผ่าน">
 						</div>
-
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="telephone" name="telephone" placeholder="เบอร์โทรศัพท์">
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="address" name="address" placeholder="ที่อยู่">
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="district" name="district" placeholder="ตำบล">
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="county" name="county" placeholder="อำเภอ">
+						</div>
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="province" name="province" placeholder="จังหวัด">
+						</div>					
+						<div class="col-md-12 form-group">
+							<input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="ไปรษณีย์">
+						</div>					
 						<div class="col-md-12 form-group">
 							<button type="submit" value="submit" class="primary-btn">สร้างบัญชี</button>
 						</div>

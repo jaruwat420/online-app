@@ -4,18 +4,20 @@ import {
     renderHome,
     checkoutProduct,
     destroySession,
-    addSession
+    addSession,
+    addSingleProduct
 
 } from "../controllers/cartController.js";
 
 //--------------------------auth---------------------------//
-import auth from '../middleware/auth.js';
+
 
 const router = Router();
 
 router.get("/", renderHome);
 router.put("/add-to-cart/:id", addCart);
 router.put("/add-to-cart/", addSession);
+router.put("/add-to-cart-single/", addSingleProduct);
 router.get("/checkout", checkoutProduct);
 router.put("/destroy-session", destroySession);
 

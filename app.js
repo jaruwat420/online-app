@@ -16,6 +16,8 @@ import hbs from "hbs";
 import cookieParser from "cookie-parser";
 import  handlebars  from "express-hbs";
 import session from "express-session";
+import passport from "passport";
+import LocalStrategy from "passport-local";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,11 +25,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 3000;
 
-// Uploads
-// form.uploadDir = path.join(__dirname, '/uploads');
+
 
 hbs.registerPartials(path.join(__dirname,'views/partials'))
-
 
 //----------------------------------Handlebars--------------------------------------------//
 app.engine('handlebars', engine({
@@ -45,20 +45,32 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static("public"));
 
-//---------------------------------- Middleware--------------------------------------------//
+
+//---------------------------------- Session--------------------------------------------//
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cookieParser())
 app.use(session({
-    secret: 'you-secret-key',
+    secret: 'secret',
     resave: false,
-    saveUninitialized: true,
-    cookie: {secure : false}
+    saveUninitialized: false,
+    cookie: {maxAge: 180 * 60 * 1000 }
 }))
 
-//----------------------------------Routes--------------------------------------------//
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function (req, res, next) {
+    res.locals.login = req.isAuthenticated();
+    res.locals.sessionLogin =  req.session.userId;
+    res.locals.sessionUser =  req.session.user;
+    next();
+});
+//----------------------------------Routes--------------------------------------------//.
+
 app.use(homeRoutes);
+
 
 //----------------------------------Routes Middleware--------------------------------------------//
 app.use("/dashboard", dashboardRoutes);

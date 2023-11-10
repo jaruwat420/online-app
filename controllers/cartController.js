@@ -22,7 +22,6 @@ const scriptsData = {
 //------------------------render index-----------------------------//
 export const renderHome = async (req, res) =>{
     const cart = req.session.cart;    
-    //console.log(cart);
     res.render('cart', {cart});
 }
 //------------------------Add product to Cart Session-----------------------------//
@@ -79,8 +78,21 @@ export const destroySession = async (req, res) => {
 //------------------------Checkout-----------------------------//
 export const checkoutProduct = async(req, res) =>{
     const cart = req.session.cart;
-    //console.log(scriptsData);
-    res.render('checkout', {cart});
+    const findProduct =  await Product.findAll();
+    const productData = findProduct.map(product => ({
+        id: product.id,
+        name: product.product_name,
+        image: product.product_image,
+        description: product.product_description,
+        price: product.product_price,
+        priceSale: product.product_price_sale,
+        qty: product.product_qty,
+        number: product.categoryId
+    }));
+    res.render('checkout', {
+        cart: cart ,
+        productData : productData
+    });
 }
 
 //------------------------Add product Session New-----------------------------//
@@ -111,6 +123,57 @@ export const addSession = async (req, res) => {
         res.status(400).send({ message: 'Exception', status: 400 });
     }
 }
+
+export const addSingleProduct = async (req, res) => {
+    const proDataForm = req.body;
+
+    if (!req.session.cart) {
+        req.session.cart = {};
+    }
+
+    try {
+        for (const proData of proDataForm) {
+            const proId = proData.proId;
+            const proValue = proData.proValue;
+
+            const findProduct = await Product.findOne({ where: { id: proId } });
+
+            if (!findProduct) {
+                console.error('เกิดข้อผิดพลาดในการค้นหาสินค้า');
+                return res.status(404).send('ไม่พบสินค้า');
+            }
+
+            const productName = findProduct.product_name;
+            const productPrice = findProduct.product_price;
+            const productImg = findProduct.product_image;
+            const cartItem = req.session.cart[proId];
+
+            if (!cartItem) {
+                req.session.cart[proId] = {
+                    id: proId,
+                    product: productName,
+                    price: productPrice,
+                    image: productImg,
+                    quantity: proValue,
+                };
+            } else {
+                cartItem.quantity += proValue;
+            }
+        }
+
+        // บันทึก session หลังจากที่เพิ่มสินค้าลงในตะกร้า
+        req.session.save((err) => {
+            if (err) {
+                console.error('เกิดข้อผิดพลาดในการบันทึก session:', err);
+            }
+        });
+
+        res.status(200).send({ message: 'สินค้าถูกเพิ่มลงในตะกร้า', status: 200 });
+    } catch (error) {
+        console.error('เกิดข้อผิดพลาด:', error);
+        res.status(400).send({ message: 'Exception', status: 400 });
+    }
+};
 
 
 

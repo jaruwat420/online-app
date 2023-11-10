@@ -29,14 +29,14 @@ const Order = sequelize.define('order', {
         allowNull: false,
     },
     order_last_update: {
-        order_date: DataTypes.STRING,
+        type: DataTypes.STRING,
         field: 'order_last_update',
         allowNull: false,
     },
-    order_memo: {
+    order_status: {
         type: DataTypes.STRING,
-        field: 'order_memo',
-        defaultValue: '',
+        field: 'order_status',
+        allowNull: false,
     },
     order_shipping_firs_name: {
         type: DataTypes.STRING,

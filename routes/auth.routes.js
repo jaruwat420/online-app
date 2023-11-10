@@ -6,23 +6,30 @@ import {
     doLogin,
     renderLogin,
     renderRegistration,
-    getRegistration
+    getRegistration,
+    renderProfile,
+    getLogout,
+    getProfile,
     // dashboard,
 } from "../controllers/authController.js";
 
-import auth from '../middleware/auth.js';
+
+import checkAuthentication from '../middleware/checkAuthen.js';
 
 const router = Router();
-
 
 router.put("/", login);
 router.get("/register", getRegister);
 router.put("/register", register);
-router.put("/login", login);
-router.get("/registration", renderRegistration);
-router.post("/registration", getRegistration);
-router.get("/doLogin", renderLogin);
-router.post("/doLogin", doLogin);
+router.put("/login",checkAuthentication, login);
+router.get("/registration", checkAuthentication,renderRegistration);
+router.post("/registration",checkAuthentication, getRegistration);
+router.get("/doLogin",checkAuthentication, renderLogin);
+router.post("/doLogin",checkAuthentication, doLogin);
+router.get('/logout', getLogout);
+router.get('/profile', renderProfile);
+router.put('/profile', getProfile);
+
 
 
 export default router;

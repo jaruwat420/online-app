@@ -5,7 +5,7 @@ import Users from '../models/user.model.js';
 import jwt from "jsonwebtoken";
 import dotenv from 'dotenv';
 import {json} from "sequelize";
-import auth from '../middleware/auth.js';
+
 import cookieParser from "cookie-parser";
 
 dotenv.config({path: './.env'});
@@ -128,34 +128,42 @@ export const renderRegistration = async (req, res) => {
 
 //----------------------------------Get Registration----------------------------------//
 export const getRegistration = async (req, res) => {
-    const {firstname, lastname, email, password, passwordConfirm} = req.body;
-    try {
-        
-    if (!(firstname && lastname && email && password && passwordConfirm)) {
-        console.log(`error`);
-    }
-    if (password < 8 ) {
-        return res.status(400).json({ error: 'รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร' });
-    }
-    if (password !== passwordConfirm) {
-        return res.status(400).json({ error: 'รหัสผ่านยืนยันไม่ตรงกับรหัสผ่าน' });
-    }
+    const {
+        firstname,
+        lastname, 
+        email, 
+        password, 
+        passwordConfirm,
+        telephone,
+        address,
+        district,
+        county,
+        province,
+        postal_code
+    } = req.body;
 
-    const oldUser = await Users.findOne({where: {user_email: email}})
+    const oldUser = await Users.findOne({where: {user_email:email }});
     if (oldUser) {
         return res.status(400).json({ error: 'พบผู้ใช้นี้ในระบบแล้วกรุณาเปลี่ยน' });
     }
-    const saltRounds = 10;
-    const passwordHash = await bcrypt.hash(password, saltRounds);
+    //const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(password, 10);
     const newUser = await Users.create({
         user_firstname: firstname,
         user_lastname: lastname,
         user_email: email,
-        user_password: passwordHash, 
-        user_password1: passwordHash,  
-        role: 'user',
+        user_password: passwordHash,
+        user_password1: passwordHash,
+        user_address: address,
+        user_phone: telephone,
+        user_district: district,
+        user_county: county,
+        user_city: province,
+        user_postal_code: postal_code,
+        user_role: 'customer'
     });
-     // Create Token
+    // Create
+    //  // Create Token
     const token = jwt.sign({
         user_id: newUser.user_id,email
     },
@@ -169,62 +177,120 @@ export const getRegistration = async (req, res) => {
         user_firstname: newUser.user_firstname,
         user_lastname: newUser.user_lastname,
         user_email: newUser.user_email,
-        user_password: newUser.user_password,
+        user_address: newUser.user_address,
+        user_district: newUser.user_district,
+        user_county: newUser.user_county,
+        user_city: newUser.user_city,
+        user_postal_code: newUser.user_postal_code,
         token: newUser.token,
-    });
-    } catch (error) {
-        console.log(error);
-    }
+    });    
 }
 
 //----------------------------------Get Login----------------------------------//
 export const doLogin = async (req, res) => {
-    const {username,password} = req.body;
     try {
-        const {username,password} = req.body;
+        const { username, password } = req.body;
 
-        //validate
+        // validate
         if (!(username && password)) {
             res.status(400).json({
                 message: 'Please Input Data In Field',
                 status: 400
-            })
+            });
             return;
         }
-        const user = await Users.findOne({where: {user_email: username,}});
+        const user = await Users.findOne({ where: { user_email: username } });
         if (user && (await bcrypt.compare(password, user.user_password))) {
 
             // create token
             const token = jwt.sign({
-                    user_id: user.user_id,
-                    username,
-                },
-                process.env.TOKEN_KEY, {
-                    expiresIn: "1h"
-                }
-            )
+                user_id: user.user_id,
+                username,
+                role: user.role
+            },
+            process.env.TOKEN_KEY, {
+                expiresIn: '5h'
+            });
             res.cookie('token', token, {
                 maxAge: 3600000,
                 httpOnly: true,
             });
 
-            res.status(201).json({
+            // Create session Users
+            req.session.userId = user.user_id;
+
+
+            req.session.user = {
                 user_id: user.user_id,
-                user_firstname: user.user_firstname,
-                user_lastname: user.user_lastname,
-                user_email: user.user_email,
-                user_password: user.user_password,
-                token: user.token,
-            })
-            return;
+                firstname: user.user_firstname,
+                lastname: user.user_lastname,
+                email: user.user_email,
+                address: user.user_address,
+                phone: user.user_phone,
+                address: user.user_address,
+                district: user.user_district,
+                county: user.user_county,
+                city: user.user_city,
+                postal_code: user.user_postal_code,
+                role: user.user_role,
+            }
+
+            // Redirect ไปยังหน้าแรกหลังจาก login
+            res.redirect('/');
+        } else {
+            res.status(400).send({
+                message: 'Invalid credentials',
+                status: 400
+            });
         }
-        res.status(400).send({
-            message: 'Please Input Data In Field',
-            status: 400
-        })
-        return;
     } catch (error) {
-        res.status(400).json(`error :${error}`);
-        return;
+        res.status(400).json(`error : ${error}`);
     }
+};
+
+
+
+//----------------------------------Render Profile----------------------------------//
+export const getLogout = async(req , res) => {
+    
 }
+//----------------------------------Render Profile----------------------------------//
+export const renderProfile = async(req , res) => {
+    console.log(req.session.user);
+    res.render('profile',);
+}
+
+//----------------------------------Get Profile----------------------------------//
+export const getProfile = async (req, res) => {
+    try {
+        const userId = req.body.userId;
+
+        if (!userId) {
+            return res.status(400).json({
+                message: 'User ID is required',
+                status: 400
+            });
+        }
+
+        const userData = await Users.findOne({ where: { user_id: userId } });
+
+        if (!userData) {
+            return res.status(404).json({
+                message: 'User not found',
+                status: 404
+            });
+        }
+
+        res.status(200).json({
+            userData: userData,
+            status: 200
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'Internal Server Error',
+            status: 500
+        });
+    }
+};

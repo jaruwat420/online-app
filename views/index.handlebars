@@ -1,17 +1,27 @@
+<!-- Start Header Area -->
+{{> header_new}}
+<!-- End Header Area -->
 
-	<!-- Start Header Area -->
-	{{> header_new}}
-	<!-- End Header Area -->
-
-    <!-- start banner Area -->
-	{{> banner_categories}}
-	<!-- End banner Area -->
-
-    <!-- start features Area -->
-	{{> feature}}
-	<!-- end features Area -->
-
+<section class="banner-area organic-breadcrumb">
     <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>หน้าหมวดหมู่ร้านค้า</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">หน้าแรก<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="#">ร้าน<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">ประเภทสินค้า</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- start features Area -->
+{{> feature}}
+<!-- end features Area -->
+
+<div class="container">
     <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-5">
             <div class="sidebar-categories">
@@ -19,12 +29,13 @@
                 <ul class="main-categories">
                     {{#each categoriesData}}
                     <li class="main-nav-list">
-                        <a data-toggle="collapse"aria-expanded="false" aria-controls="{{this.id}}" class="categories_list" id="categories_list">
+                        <a data-toggle="collapse" aria-expanded="false" aria-controls="{{this.id}}"
+                            class="categories_list" id="categories_list">
                             <span class="lnr lnr-arrow-right"></span>{{this.name}}<span>(53)</span>
                         </a>
-                    </li>                
+                    </li>
                     {{/each}}
-                </ul>                
+                </ul>
             </div>
 
             {{!-- Filter product --}}
@@ -88,42 +99,43 @@
                 </div>
             </div>
             <!-- End Filter Bar -->
-            
+
             <!-- Start Best Seller -->
             <section class="latest-product-area pb-40 category-list">
-                <div id="productList"  class="row">      
+                <div id="productList" class="row">
                     {{#each productData}}
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">  
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-product">
+                            <a href="/product/single-product/{{this.id}}">
                                 <img style="width: 100%; height: 150px;" id="myimage" class="img-fluid" src="/uploads/{{this.image}}" alt="">
-                                {{!-- <div id="myresult" class="img-zoom-result"></div> --}}
-                                <div class="product-details">
-                                    <h6>{{this.name}}</h6>
-                                    <div class="price">
-                                        <h6>฿{{this.price}}</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                    <div class="prd-bottom">
-                                        <a class="social-info add-product" data-id="{{this.id}}">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">เพิ่มลงตะกร้า</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-heart"></span>
-                                            <p class="hover-text">ชอบ</p>
-                                        </a>
-                                        {{!-- <a href="" class="social-info">
-                                            <span class="lnr lnr-sync"></span>
-                                            <p class="hover-text">เปรียบเทียบ</p>
-                                        </a> --}}
-                                        <a href="/product/single-product/{{this.id}}" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text">ดู</p>
-                                        </a>                                
-                                    </div>                             
-                                </div>      
+                            </a>
+                            <div class="product-details">
+                                <h6>{{this.name}}</h6>
+                                <div class="price">
+                                    <h6>฿{{this.price}}</h6>
+                                    <h6 class="l-through">{{this.priceSale}}</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a class="social-info add-product" data-id="{{this.id}}">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">เพิ่มลงตะกร้า</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">ชอบ</p>
+                                    </a>
+                                    {{!-- <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">เปรียบเทียบ</p>
+                                    </a> --}}
+                                    <a href="/product/single-product/{{this.id}}" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">ดู</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+                    </div>
                     {{/each}}
                 </div>
             </section>
@@ -132,7 +144,7 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting mr-auto">
-                    <select>          
+                    <select>
                         <option value="1">Show 12</option>
                         <option value="1">Show 12</option>
                         <option value="1">Show 12</option>

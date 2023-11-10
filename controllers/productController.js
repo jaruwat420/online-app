@@ -66,6 +66,7 @@ export const createProduct = async (req, res, next) => {
         const [productImage] = files.product_image;
         const productDescription = fields.product_description;
         const productPrice = fields.product_price;
+        const productPriceSale = fields.product_price_sale;
         const productQty = fields.product_qty;
 
         if (productImage) {
@@ -76,6 +77,7 @@ export const createProduct = async (req, res, next) => {
             const productNames = Array.isArray(productName) ? productName.join(', ') : productName;
             const productDescriptions = Array.isArray(productDescription) ? productDescription.join(', ') : productDescription;
             const productPrices = Array.isArray(productPrice) ? productPrice.join(', ') : productPrice;
+            const productPriceSales = Array.isArray(productPriceSale) ? productPriceSale.join(', ') : productPriceSale;
             const productQtys = Array.isArray(productQty) ? productQty.join(', ') : productQty;
             
             fs.rename(oldPath, newFilePath, (err) => {
@@ -89,6 +91,7 @@ export const createProduct = async (req, res, next) => {
                         product_image: productImage.originalFilename,
                         product_description: productDescriptions,
                         product_price: productPrices,
+                        product_price_sale: productPriceSales,
                         product_qty: productQtys,
                         categoryId: categoryTypes,
                     });
@@ -144,5 +147,5 @@ export const productDetail = async (req, res) => {
         price: product.product_price,
         qty: product.product_qty
     }));
-    res.render('single-product', {categoriesData,productData});
+    res.render('single-product', {categoriesData, productData});
 }

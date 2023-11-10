@@ -102,7 +102,7 @@ export const renderIndex = async (req, res) => {
     const categories = await Categories.findAll({ attributes: ['id', 'category_name', 'category_image']});
     const categoriesData = categories.map(category => ({ id: category.id, name: category.category_name }));
     
-    const products = await Product.findAll({ attributes: ['id', 'product_name', 'product_image', 'product_description', 'product_price', 'product_qty', 'categoryId'] });
+    const products = await Product.findAll({ attributes: ['id', 'product_name', 'product_image', 'product_description', 'product_price', 'product_price_sale', 'product_qty', 'categoryId'] });
     //const numberOfProduct = await Product()
     const productData = products.map(product => ({
         id: product.id,
@@ -110,6 +110,7 @@ export const renderIndex = async (req, res) => {
         image: product.product_image,
         description: product.product_description,
         price: product.product_price,
+        priceSale: product.product_price_sale,
         qty: product.product_qty,
         number: product.categoryId
     }));

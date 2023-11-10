@@ -1,3 +1,8 @@
 .table_post  {
     width: 700px;
 }
+
+.genric-btn.selected {
+    background-color: #ffba00;
+    color: white;
+}

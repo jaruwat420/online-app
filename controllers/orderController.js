@@ -7,6 +7,7 @@ import Product from "../models/product.model.js";
 import Cart from "../models/cart.model.js";
 import AddCart from "../models/addCart.js";
 import { log } from "console";
+import { param } from "express-validator";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,5 +26,14 @@ export const renderHome = async (req, res) =>{
     res.render('order', {layout: 'admin'});
 }
 
+//------------------------render Home-----------------------------//
+export const createOrder = async (req, res) =>{
+    // res.render('order', {layout: 'admin'});
+    console.log(res.body);
+}
+//------------------------render confirm-----------------------------//
+export const renderConfirm = async(req, res) => {
+    res.render('confirmation');
+}
 
 

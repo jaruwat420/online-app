@@ -1,0 +1,63 @@
+<h4>เพิ่มช่องทางการชำระเงิน</h4>
+<div class="card">
+    <div class="card-header">
+        <button class="btn btn-success" id="btn-add-payment">เพิ่ม</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped" id="dataTable" class="display">
+            <caption>List of users</caption>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">รูปภาพ</th>
+                    <th scope="col">ธนาคาร</th>  
+                    <th scope="col">หมายเลขบัญชี</th>
+                    <th scope="col">แก้ไข</th>
+                    <th scope="col">ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{!-- Modal --}}
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มธนาคาร</h5>
+            </div>
+            <div class="modal-body">
+                <form id="myForm" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="bank_image" class="col-form-label">รูปภาพคิวอาร์โค้ด:</label>
+                        <input type="file" name="bank_image" class="form-control" id="bank_image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bank_name" class="col-form-label">ชื่อธนาคาร:</label>
+                        <input type="text" class="form-control" name="bank_name" id="bank_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bank-account" class="col-form-label">หมายเลขบัญชี:</label>
+                        <input type="text" class="form-control" name="bank_account" id="bank_account">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn-close-payment">ปิด</button>
+                <button type="button" class="btn btn-success" id="btn-save-payment" >บันทึก</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/jquery/jquery.min.js"></script>
+<script src="/js/payment.js"></script>

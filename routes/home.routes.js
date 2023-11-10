@@ -6,7 +6,6 @@ import {
 
 
 const router = Router();
-
 router.get("/", renderHome);
 
 export default router;

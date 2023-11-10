@@ -1,14 +1,21 @@
 import { Router } from "express";
 import { 
     renderHome,
-    setBanner
+    setBanner,
+    renderPayment,
+    createPayment,
+    getdatatablePayment,
+    deletePayment
 } from "../controllers/dashboardController.js";
 
-import auth from '../middleware/auth.js';
 
 const router = Router();
 
-router.get("/", auth, renderHome);
-router.get("/banner", auth, setBanner);
+router.get("/", renderHome);
+router.get("/banner", setBanner);
+router.get("/datatable_payment", getdatatablePayment);
+router.get("/payment", renderPayment);
+router.put("/payment_create", createPayment);
+router.put("/deletePayment/:id", deletePayment);
 
 export default router;

@@ -44,6 +44,11 @@ const Product = sequelize.define('product', {
         field: 'pd_price',
         defaultValue: false,
     },
+    product_price_sale: {
+        type: DataTypes.STRING,
+        field: 'pd_price_sale',
+        defaultValue: false,
+    },
     product_qty: {
         type: DataTypes.STRING,
         field: 'pd_qty',
