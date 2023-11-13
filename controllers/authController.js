@@ -219,13 +219,11 @@ export const doLogin = async (req, res) => {
             // Create session Users
             req.session.userId = user.user_id;
 
-
             req.session.user = {
                 user_id: user.user_id,
                 firstname: user.user_firstname,
                 lastname: user.user_lastname,
                 email: user.user_email,
-                address: user.user_address,
                 phone: user.user_phone,
                 address: user.user_address,
                 district: user.user_district,
@@ -235,8 +233,7 @@ export const doLogin = async (req, res) => {
                 role: user.user_role,
             }
 
-            // Redirect ไปยังหน้าแรกหลังจาก login
-            res.redirect('/');
+                res.redirect('/');
         } else {
             res.status(400).send({
                 message: 'Invalid credentials',

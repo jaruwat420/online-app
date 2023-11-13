@@ -1,9 +1,13 @@
-const verifyTokenAndAuthorization = (req, res, next) => {
+import jwt from "jsonwebtoken";
+const config = process.env;
+
+const verifyToken = (req, res, next) => {
     try {
-        const token = req.body.token || req.query.token || req.cookies.token || req.headers['x-access-token'];
+        
+        const token = req.body.token || req.query.token || req.cookies.token || req.headers['x-access-token'] ;
 
         if (!token) {
-            return res.status(403).send('Token is required for authentication');
+            return res.status(403).send('filed...token is request for authen');
         }
 
         jwt.verify(token, config.TOKEN_KEY, (err, decoded) => {
@@ -13,17 +17,13 @@ const verifyTokenAndAuthorization = (req, res, next) => {
                 });
             }
 
-            req.user = decoded.user;
-
-            if (req.user.user_id === req.params.user_id || req.user.role) {
-                next();
-            } else {
-                res.status(403).json("You are not allowed");
-            }
+            req.user = decoded.user; 
+            return next(); 
         });
+
     } catch (error) {
         return res.status(401).send(`Invalid Token! ${error}.`);
     }
-};
+}
 
-module.exports = { verifyTokenAndAuthorization };
+export default verifyToken;

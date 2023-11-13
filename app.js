@@ -12,6 +12,7 @@ import productRoutes from "./routes/product.routes.js";
 import categoriesRoutes from "./routes/categories.routes.js";
 import cartRoutes from "./routes/cart.routes.js";
 import orderRoutes from "./routes/order.routes.js";
+import apiRoutes from "./routes/api.routes.js";
 import hbs from "hbs";
 import cookieParser from "cookie-parser";
 import  handlebars  from "express-hbs";
@@ -80,6 +81,7 @@ app.use("/product", productRoutes);
 app.use("/categories", categoriesRoutes);
 app.use("/cart", cartRoutes);
 app.use("/order", orderRoutes);
+app.use("/api", apiRoutes);
 
 //----------------------------------Listen--------------------------------------------//
 app.listen(port, () => {

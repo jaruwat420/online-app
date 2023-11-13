@@ -15,6 +15,7 @@ import {
 
 
 import checkAuthentication from '../middleware/checkAuthen.js';
+import auth from '../middleware/auth.js';
 
 const router = Router();
 
@@ -24,8 +25,8 @@ router.put("/register", register);
 router.put("/login",checkAuthentication, login);
 router.get("/registration", checkAuthentication,renderRegistration);
 router.post("/registration",checkAuthentication, getRegistration);
-router.get("/doLogin",checkAuthentication, renderLogin);
-router.post("/doLogin",checkAuthentication, doLogin);
+router.get("/doLogin", auth, renderLogin);
+router.post("/doLogin", auth, doLogin);
 router.get('/logout', getLogout);
 router.get('/profile', renderProfile);
 router.put('/profile', getProfile);
