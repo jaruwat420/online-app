@@ -38,7 +38,7 @@ const Order = sequelize.define('order', {
         field: 'order_status',
         allowNull: false,
     },
-    order_shipping_firs_name: {
+    order_shipping_first_name: {
         type: DataTypes.STRING,
         field: 'order_shipping_first_name',
         defaultValue: '',
@@ -68,9 +68,19 @@ const Order = sequelize.define('order', {
         field: 'order_shipping_state',
         defaultValue: '',
     },
-    order_shipping_city: {
+    order_shipping_district: {
         type: DataTypes.STRING,
-        field: 'order_shipping_city',
+        field: 'order_shipping_district',
+        defaultValue: '',
+    },
+    order_shipping_county: {
+        type: DataTypes.STRING,
+        field: 'order_shipping_county',
+        defaultValue: '',
+    },
+    order_shipping_province: {
+        type: DataTypes.STRING,
+        field: 'order_shipping_province',
         defaultValue: '',
     },
     order_shipping_postal_code: {
@@ -83,44 +93,9 @@ const Order = sequelize.define('order', {
         field: 'order_shipping_cost',
         defaultValue: '',
     },
-    order_payment_first_name: {
+    order_delivery_type: {
         type: DataTypes.STRING,
-        field: 'order_payment_first_name',
-        defaultValue: '',
-    },
-    order_payment_last_name: {
-        type: DataTypes.STRING,
-        field: 'order_payment_last_name',
-        defaultValue: '',
-    },
-    order_payment_address1: {
-        type: DataTypes.STRING,
-        field: 'order_payment_address1',
-        defaultValue: '',
-    },
-    order_payment_address2: {
-        type: DataTypes.STRING,
-        field: 'order_payment_address2',
-        defaultValue: '',
-    },
-    order_payment_phone: {
-        type: DataTypes.STRING,
-        field: 'order_payment_phone',
-        defaultValue: '',
-    },
-    order_payment_city: {
-        type: DataTypes.STRING,
-        field: 'order_payment_city',
-        defaultValue: '',
-    },
-    order_payment_state: {
-        type: DataTypes.STRING,
-        field: 'order_payment_state',
-        defaultValue: '',
-    },
-    order_payment_postal_code: {
-        type: DataTypes.STRING,
-        field: 'order_payment_postal_code',
+        field: 'order_delivery_type',
         defaultValue: '',
     },
 }, 

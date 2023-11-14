@@ -10,6 +10,7 @@ import {
     renderProfile,
     getLogout,
     getProfile,
+    getConfirm
     // dashboard,
 } from "../controllers/authController.js";
 
@@ -22,14 +23,15 @@ const router = Router();
 router.put("/", login);
 router.get("/register", getRegister);
 router.put("/register", register);
-router.put("/login",checkAuthentication, login);
-router.get("/registration", checkAuthentication,renderRegistration);
-router.post("/registration",checkAuthentication, getRegistration);
-router.get("/doLogin", auth, renderLogin);
-router.post("/doLogin", auth, doLogin);
+router.put("/login", login);
+router.get("/registration", renderRegistration);
+router.post("/registration", getRegistration);
+router.get("/doLogin", renderLogin);
+router.post("/doLogin", doLogin);
 router.get('/logout', getLogout);
 router.get('/profile', renderProfile);
 router.put('/profile', getProfile);
+router.get('/checkout_confirm', getConfirm);
 
 
 

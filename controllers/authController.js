@@ -291,3 +291,7 @@ export const getProfile = async (req, res) => {
         });
     }
 };
+//----------------------------------Get Confirm----------------------------------//
+export const getConfirm = async (req, res) => {
+    
+}

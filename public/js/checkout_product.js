@@ -111,17 +111,45 @@
 		if (!checkbox.checked) {
 			alert('โปรดเลือก "ฉันได้อ่านและยอมรับข้อกำหนดและเงื่อนไข" ก่อนดำเนินการต่อ');
 		} else {
-			const link = document.querySelector('a .result');
-			const firstname = $('#firstname').val();
-			const lastname = $('#lastname').val();
-			const telephone =$('#telephone').val();
-			const email =$('#email').val();
+			const shoppingCost = document.querySelector('a .result');
+			const deliveryType = document.querySelector('a .shipping_value');
+
+			const firstName = $('#firstName').val();
+			const lastName = $('#lastName').val();
+			const telePhone =$('#telePhone').val();
+			const address =$('#address').val();
 			const address1 =$('#address1').val();
-			const address2 =$('#address2').val();
-			const city =$('#city').val();
+			const district =$('#district').val();
+			const county =$('#county').val();
 			const province =$('#province_select').val();
 			const zip =$('#zip').val();
-			console.log(link.textContent);
+
+			const productData = {
+				shoppingCost: shoppingCost.textContent,
+				deliveryType: deliveryType.textContent,
+				firstName: firstName,
+				lastName: lastName,
+				telePhone: telePhone,
+				address: address,
+				address1: address1,
+				district: district,
+				county: county,
+				province: province,
+				postalCode: zip,
+			}
+			$.ajax({
+				type: "PUT",
+				url: "/cart/checkout",
+				data: productData,
+				dataType: "Json",
+				success: function (res) {
+					if (res.status === 200) {
+						const orderId = res.orderId;
+						//console.log(orderId);
+						window.location.href = `/order/confirmations/${orderId}`
+					}
+				}
+			});
 		}
 	});
 

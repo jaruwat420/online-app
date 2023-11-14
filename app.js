@@ -19,14 +19,14 @@ import  handlebars  from "express-hbs";
 import session from "express-session";
 import passport from "passport";
 import LocalStrategy from "passport-local";
+import axios from 'axios';
+import { Sequelize, DataTypes } from 'sequelize';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
-
-
 
 hbs.registerPartials(path.join(__dirname,'views/partials'))
 
@@ -39,13 +39,11 @@ app.engine('handlebars', engine({
     ]
 }));
 
-
 //----------------------------------Setting--------------------------------------------//
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static("public"));
-
 
 //---------------------------------- Session--------------------------------------------//
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -68,10 +66,9 @@ app.use(function (req, res, next) {
     res.locals.sessionUser =  req.session.user;
     next();
 });
-//----------------------------------Routes--------------------------------------------//.
 
+//----------------------------------Routes--------------------------------------------------------//
 app.use(homeRoutes);
-
 
 //----------------------------------Routes Middleware--------------------------------------------//
 app.use("/dashboard", dashboardRoutes);
@@ -83,7 +80,7 @@ app.use("/cart", cartRoutes);
 app.use("/order", orderRoutes);
 app.use("/api", apiRoutes);
 
-//----------------------------------Listen--------------------------------------------//
+//----------------------------------Listen------------------------------------------------------//
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

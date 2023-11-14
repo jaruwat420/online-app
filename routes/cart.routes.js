@@ -2,10 +2,12 @@ import { Router } from "express";
 import { 
     addCart,
     renderHome,
-    checkoutProduct,
+    renderCheckout,
     destroySession,
     addSession,
-    addSingleProduct
+    addSingleProduct,
+    getCheckout,
+    getConfirm,
 
 } from "../controllers/cartController.js";
 
@@ -18,7 +20,9 @@ router.get("/", renderHome);
 router.put("/add-to-cart/:id", addCart);
 router.put("/add-to-cart/", addSession);
 router.put("/add-to-cart-single/", addSingleProduct);
-router.get("/checkout", checkoutProduct);
 router.put("/destroy-session", destroySession);
+router.get("/checkout", renderCheckout);
+router.put("/checkout", getCheckout);
+router.get("/checkout_confirm", getConfirm);
 
 export default router;

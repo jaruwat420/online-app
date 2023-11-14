@@ -23,9 +23,10 @@
                 <div class="details_item">
                     <h4>ข้อมูลการสั่งซื้อ</h4>
                     <ul class="list">
-                        <li><a href="#"><span>หมายเลขคำสั่งซื้อ</span> : 60235</a></li>
-                        <li><a href="#"><span>วันที่</span> : Los Angeles</a></li>
-                        <li><a href="#"><span>ทั้งหมด</span> : USD 2210</a></li>
+            {{#each orderData }}                           
+                        <li><a href="#"><span>หมายเลขคำสั่งซื้อ</span>{{this.id}}</a></li>
+                        <li><a href="#"><span>วันที่</span>{{this.date}}</a></li>
+                        <li><a href="#"><span>ทั้งหมด</span>{{this.shippingCost}} บาท</a></li>
                         <li><a href="#"><span>วิธีการชำระเงิน</span> : Check payments</a></li>
                     </ul>
                 </div>
@@ -34,24 +35,24 @@
                 <div class="details_item">
                     <h4>ที่อยู่</h4>
                     <ul class="list">
-                        <li><a href="#"><span>ถนน</span> : 56/8</a></li>
-                        <li><a href="#"><span>เมือง</span> : Los Angeles</a></li>
-                        <li><a href="#"><span>จังหวัด</span> : United States</a></li>
-                        <li><a href="#"><span>รหัสไปรษณีย์ </span> : 36952</a></li>
+                        <li><a href="#"><span>ตำบล</span>{{this.district}}</a></li>
+                        <li><a href="#"><span>อำเภอ</span></a>{{this.county}}</li>
+                        <li><a href="#"><span>จังหวัด</span>{{this.province}}</a></li>
+                        <li><a href="#"><span>รหัสไปรษณีย์ </span>{{this.postalCode}}</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>     
             <div class="col-lg-4">
                 <div class="details_item">
-                    <h4>Shipping Address</h4>
+                    <h4>ช่องทางการชำระเงิน</h4>
                     <ul class="list">
-                        <li><a href="#"><span>ถนน</span> : 56/8</a></li>
-                        <li><a href="#"><span>เมือง</span> : Los Angeles</a></li>
-                        <li><a href="#"><span>จังหวัด</span> : United States</a></li>
-                        <li><a href="#"><span>รหัสไปรษณีย์ </span> : 36952</a></li>
+                        <li><img src="/uploads/payment/qr-code.svg" alt=""></li>
+                        <li><a href="#"><span>ธนาคาร:</span>กสิกร</a></li>
+                        <li><a href="#"><span>หมายเลขบัญชีธนาคาร :</span>672-8186611</a></li>
                     </ul>
                 </div>
-            </div>
+            </div>     
+            {{/each}}       
         </div>
         <div class="order_details_table">
             <h2>รายละเอียดการสั่งซื้อ</h2>
@@ -143,7 +144,7 @@
 <!-- start product Area -->
 {{> product}}
 <!-- end product Area -->
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="/js/vendor/jquery-2.2.4.min.js"></script>
 <script src="/js/confirmation.js"></script>
 <!-- start footer Area -->
